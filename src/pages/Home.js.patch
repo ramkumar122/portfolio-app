@@ -1,0 +1,154 @@
+<section id="about" className="about-skills-section">
+        <div className="about-skills-container">
+          <motion.div className="about-col" initial="hidden" animate="visible" variants={fadeSlide}>
+            <motion.h2 
+              className="about-title"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              About Me
+            </motion.h2>
+            <motion.p
+              className="about-desc"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              I am a results-driven software developer and IT graduate student at Arizona State University, passionate about building impactful digital solutions. My experience as an SDE Intern at Amazon includes designing AWS CDK constructs, automating certificate rotation, and enhancing system security. I have a strong foundation in Python, Java, SQL, and TypeScript, and enjoy leveraging machine learning and data visualization to solve real-world problems. I thrive in collaborative environments, value creative problem-solving, and am committed to continuous learning and innovation.
+            </motion.p>
+          </motion.div>
+          <motion.div className="skills-col" initial="hidden" animate="visible" variants={fadeSlide}>
+            <div className="skills-list-verticalgrid-3cols">
+              {/* 3 columns, 4 skills per column */}
+              {[
+                [
+                  { name: 'Python', icon: <FaJs color="#3776AB" size={28} /> },
+                  { name: 'TensorFlow', icon: <FaJs color="#ff6f00" size={28} /> },
+                  { name: 'TypeScript', icon: <FaJs color="#3178c6" size={28} /> },
+                  { name: 'HTML5', icon: <FaHtml5 color="#e34c26" size={28} /> },
+                ],
+                [
+                  { name: 'Java', icon: <FaJs color="#f89820" size={28} /> },
+                  { name: 'Matplotlib', icon: <FaJs color="#11557c" size={28} /> },
+                  { name: 'Bokeh', icon: <FaJs color="#e76f51" size={28} /> },
+                  { name: 'CSS3', icon: <FaCss3Alt color="#2965f1" size={28} /> },
+                ],
+                [
+                  { name: 'SQL', icon: <FaJs color="#00618a" size={28} /> },
+                  { name: 'Seaborn', icon: <FaJs color="#43b7ba" size={28} /> },
+                  { name: 'AWS', icon: <FaCloud color="#ff9900" size={28} /> },
+                  { name: 'React', icon: <FaReact color="#61dafb" size={28} /> },
+                ],
+              ].map((col, colIdx) => (
+                <div className="skills-list-col" key={colIdx}>
+                  {col.map((tech, i) => (
+                    <motion.div
+                      className="skills__item"
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + (colIdx * 4 + i) * 0.08, duration: 0.6 }}
+                    >
+                      <span className="skills__icon">{tech.icon}</span>
+                      <span className="skills__label">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+=======
+      {/* About + Skills Section - benscott.dev inspired */}
+      <section id="about" className="about-skills-section">
+        <div className="about-skills-container">
+          <motion.div className="about-col" initial="hidden" animate="visible" variants={fadeSlide}>
+            <motion.h2 
+              className="about-title"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              About Me
+            </motion.h2>
+            <motion.p
+              className="about-desc"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              I am a results-driven software developer and IT graduate student at Arizona State University, passionate about building impactful digital solutions. My experience as an SDE Intern at Amazon includes designing AWS CDK constructs, automating certificate rotation, and enhancing system security. I have a strong foundation in Python, Java, SQL, and TypeScript, and enjoy leveraging machine learning and data visualization to solve real-world problems. I thrive in collaborative environments, value creative problem-solving, and am committed to continuous learning and innovation.
+            </motion.p>
+          </motion.div>
+          <motion.div className="skills-col" initial="hidden" animate="visible" variants={fadeSlide}>
+            <div className="skills-list-verticalgrid-3cols">
+              {/* 3 columns, 4 skills per column */}
+              {[
+                [
+                  { name: 'Python', icon: <FaJs color="#3776AB" size={28} /> },
+                  { name: 'TensorFlow', icon: <FaJs color="#ff6f00" size={28} /> },
+                  { name: 'TypeScript', icon: <FaJs color="#3178c6" size={28} /> },
+                  { name: 'HTML5', icon: <FaHtml5 color="#e34c26" size={28} /> },
+                ],
+                [
+                  { name: 'Java', icon: <FaJs color="#f89820" size={28} /> },
+                  { name: 'Matplotlib', icon: <FaJs color="#11557c" size={28} /> },
+                  { name: 'Bokeh', icon: <FaJs color="#e76f51" size={28} /> },
+                  { name: 'CSS3', icon: <FaCss3Alt color="#2965f1" size={28} /> },
+                ],
+                [
+                  { name: 'SQL', icon: <FaJs color="#00618a" size={28} /> },
+                  { name: 'Seaborn', icon: <FaJs color="#43b7ba" size={28} /> },
+                  { name: 'AWS', icon: <FaCloud color="#ff9900" size={28} /> },
+                  { name: 'React', icon: <FaReact color="#61dafb" size={28} /> },
+                ],
+              ].map((col, colIdx) => (
+                <div className="skills-list-col" key={colIdx}>
+                  {col.map((tech, i) => (
+                    <motion.div
+                      className="skills__item"
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + (colIdx * 4 + i) * 0.08, duration: 0.6 }}
+                    >
+                      <span className="skills__icon">{tech.icon}</span>
+                      <span className="skills__label">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="experience-section" style={{ marginTop: '3rem' }}>
+        <motion.h2 
+          className="experience-title"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          Experience
+        </motion.h2>
+        <div className="experience-list">
+          {experience.map((exp, idx) => (
+            <motion.div 
+              key={idx} 
+              className="experience-item"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + idx * 0.2, duration: 0.6 }}
+              style={{ marginBottom: '1.5rem' }}
+            >
+              <h3 className="experience-role">{exp.role} <span className="experience-company">- {exp.company}</span></h3>
+              <p className="experience-period" style={{ fontStyle: 'italic', color: '#888' }}>{exp.period}</p>
+              <p className="experience-description">{exp.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>

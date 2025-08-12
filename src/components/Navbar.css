@@ -1,0 +1,71 @@
+.navbar {
+  background: linear-gradient(90deg, #141e30, #243b55);
+  padding: 1rem 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 2px solid #00bfff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+  background: linear-gradient(90deg, #243b55, #141e30);
+}
+
+.navbar-list {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbar-item {
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+
+.navbar-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.25s, transform 0.2s;
+  padding: 0.25rem 0;
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #00bfff;
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease;
+  left: 0;
+  bottom: 0;
+}
+
+.navbar-link:hover,
+.navbar-link:focus {
+  color: #00bfff;
+  transform: scale(1.05);
+}
+
+.navbar-link:hover::after,
+.navbar-link:focus::after {
+  width: 100%;
+}
+
+body {
+  padding-top: 56px;
+}
