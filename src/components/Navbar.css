@@ -66,6 +66,42 @@
   width: 100%;
 }
 
+.navbar-button {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.25s, transform 0.2s;
+  padding: 0.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.navbar-button:hover,
+.navbar-button:focus {
+  color: #00bfff;
+  transform: scale(1.05);
+}
+
+.navbar-button::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #00bfff;
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease;
+  left: 0;
+  bottom: 0;
+}
+
+.navbar-button:hover::after,
+.navbar-button:focus::after {
+  width: 100%;
+}
+
 body {
   padding-top: 56px;
 }

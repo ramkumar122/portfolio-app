@@ -1,4 +1,3 @@
-
 import '../styles/main.css';
 
 import React from 'react';
@@ -141,7 +140,7 @@ const experience = [
   {
     role: 'Software Development Engineer Intern',
     company: 'Amazon',
-    period: 'May 2023 - Aug 2023',
+    period: 'May 2025 - Aug 2025',
     description: `• Designed and implemented AWS CDK constructs for scalable infrastructure automation.
 • Automated certificate rotation processes to enhance system security.
 • Developed monitoring and alerting solutions to improve operational reliability.
@@ -150,7 +149,7 @@ const experience = [
   {
     role: 'UI/UX Coordinator',
     company: 'Arizona State University',
-    period: '2024 - 2025',
+    period: 'May 2024 - Aug 2025',
     description: `• Coordinated UI/UX design efforts for student projects.
 • Led design sprints and workshops to foster innovation.
 • Conducted user research and usability testing to improve product designs.`
