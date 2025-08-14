@@ -31,7 +31,8 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.27.1",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "vercel": "^45.0.9"
   },
   "homepage": "https://rammeenavalli.github.io/portfolio",
   "browserslist": {

@@ -16,20 +16,20 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <ul className="navbar-list">
-        <li className={`navbar-item ${location.pathname === '/' ? 'active' : ''}`}>
-          <a href="#home" className="navbar-link" onClick={(e) => {e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});}}>Home</a>
+          <li className={`navbar-item ${location.pathname === '/' ? 'active' : ''}`}>
+          <Link to="/" className="navbar-link">Home</Link>
         </li>
           <li className={`navbar-item`}>
-            <a href="#about" className="navbar-link" onClick={(e) => {handleScroll(e, 'about'); setTimeout(() => window.dispatchEvent(new Event('scroll')), 300);}}>About</a>
+            <Link to="/about" className="navbar-link">About</Link>
           </li>
           <li className={`navbar-item`}>
-            <a href="#experience" className="navbar-link" onClick={(e) => {handleScroll(e, 'experience'); setTimeout(() => window.dispatchEvent(new Event('scroll')), 300);}}>Experience</a>
+            <Link to="/experience" className="navbar-link">Experience</Link>
           </li>
           <li className={`navbar-item`}>
-            <a href="#projects" className="navbar-link" onClick={(e) => {handleScroll(e, 'projects'); setTimeout(() => window.dispatchEvent(new Event('scroll')), 300);}}>Projects</a>
+            <Link to="/projects" className="navbar-link">Projects</Link>
           </li>
           <li className={`navbar-item`}>
-            <a href="#contact" className="navbar-link" onClick={(e) => {handleScroll(e, 'contact'); setTimeout(() => window.dispatchEvent(new Event('scroll')), 300);}}>Connect</a>
+            <Link to="/contact" className="navbar-link">Connect</Link>
           </li>
       </ul>
     </nav>

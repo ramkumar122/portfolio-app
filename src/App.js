@@ -20,7 +20,7 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <Router basename="/portfolio-app">
+    <Router basename="/portfolio">
       <div className="App">
         <Navbar />
         <AnimatedRoutes />
