@@ -2,6 +2,7 @@
   "name": "portfolio-app",
   "version": "1.0.0",
   "description": "A personal portfolio built with React",
+  "homepage": "https://ramkumar122.github.io/portfolio-app/",
   "main": "src/index.js",
   "scripts": {
     "start": "craco start",
