@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -20,15 +21,29 @@ const Navbar = () => {
     }
   };
 
+  const handleNavClick = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: sectionId } });
+      return;
+    }
+    scrollToSection(sectionId);
+  };
+
   return (
     <nav className="navbar">
       <ul className="navbar-list">
         <li className={`navbar-item ${location.pathname === '/' ? 'active' : ''}`}>
-          <Link to="/" className="navbar-link">Home</Link>
+          <button 
+            onClick={() => handleNavClick('home')} 
+            className="navbar-link navbar-button"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
+          >
+            Home
+          </button>
         </li>
         <li className={`navbar-item`}>
           <button 
-            onClick={() => scrollToSection('about')} 
+            onClick={() => handleNavClick('about')} 
             className="navbar-link navbar-button"
             style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
           >
@@ -37,7 +52,7 @@ const Navbar = () => {
         </li>
         <li className={`navbar-item`}>
           <button 
-            onClick={() => scrollToSection('experience')} 
+            onClick={() => handleNavClick('experience')} 
             className="navbar-link navbar-button"
             style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
           >
@@ -46,7 +61,7 @@ const Navbar = () => {
         </li>
         <li className={`navbar-item`}>
           <button 
-            onClick={() => scrollToSection('projects')} 
+            onClick={() => handleNavClick('projects')} 
             className="navbar-link navbar-button"
             style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
           >
@@ -55,7 +70,7 @@ const Navbar = () => {
         </li>
         <li className={`navbar-item`}>
           <button 
-            onClick={() => scrollToSection('contact')} 
+            onClick={() => handleNavClick('contact')} 
             className="navbar-link navbar-button"
             style={{ background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
           >

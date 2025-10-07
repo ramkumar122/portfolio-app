@@ -1,6 +1,7 @@
 import '../styles/main.css';
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaExternalLinkAlt, FaGithub, FaQuoteLeft, FaEnvelope, FaLinkedin, FaReact, FaJs, FaCss3Alt, FaHtml5, FaCloud } from 'react-icons/fa';
 
@@ -149,7 +150,7 @@ const experience = [
   {
     role: 'UI/UX Coordinator',
     company: 'Arizona State University',
-    period: 'May 2024 - Aug 2025',
+    period: 'August 2021 - May 2022',
     description: `• Coordinated UI/UX design efforts for student projects.
 • Led design sprints and workshops to foster innovation.
 • Conducted user research and usability testing to improve product designs.`
@@ -157,20 +158,29 @@ const experience = [
 ];
 
 const Home = () => {
-  const [activeSection, setActiveSection] = React.useState(null);
+  const location = useLocation();
 
   React.useEffect(() => {
-    if (activeSection) {
-      const element = document.getElementById(activeSection);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+    const targetSection = location.state?.scrollTo;
+    if (!targetSection) {
+      return;
     }
-  }, [activeSection]);
 
-  const handleSetActiveSection = (section) => {
-    setActiveSection(section);
-  };
+    const element = document.getElementById(targetSection);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      const retryElement = document.getElementById(targetSection);
+      if (retryElement) {
+        retryElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 120);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [location]);
 
   return (
     <div className="portfolio-root">
