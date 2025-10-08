@@ -3,7 +3,8 @@ import '../styles/main.css';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub, FaQuoteLeft, FaEnvelope, FaLinkedin, FaReact, FaJs, FaCss3Alt, FaHtml5, FaCloud } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub, FaQuoteLeft, FaEnvelope, FaLinkedin, FaReact, FaJs, FaCss3Alt, FaHtml5, FaCloud, FaPython, FaJava, FaPalette } from 'react-icons/fa';
+import { SiTensorflow, SiTypescript, SiPlotly, SiPandas, SiAmazonwebservices, SiMysql } from 'react-icons/si';
 
 // Contact form section for Home.js using @formspree/react
 import { useForm, ValidationError } from '@formspree/react';
@@ -206,7 +207,7 @@ const Home = () => {
           </motion.p>
       <motion.div className="home-socials" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.7 }}>
         <a href="mailto:rammeenavalli0@gmail.com" className="home-social-link"><FaEnvelope /></a>
-        <a href="https://www.linkedin.com/in/pavan-meenavalli-671173222/" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaLinkedin /></a>
+        <a href="https://www.linkedin.com/in/ram-meenavalli-671173222/" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaLinkedin /></a>
         <a href="https://github.com/ramkumar122?tab=repositories" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaGithub /></a>
       </motion.div>
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -252,21 +253,21 @@ const Home = () => {
               {/* 3 columns, 4 skills per column */}
               {[
                 [
-                  { name: 'Python', icon: <FaJs color="#3776AB" size={28} /> },
-                  { name: 'TensorFlow', icon: <FaJs color="#ff6f00" size={28} /> },
-                  { name: 'TypeScript', icon: <FaJs color="#3178c6" size={28} /> },
+                  { name: 'Python', icon: <FaPython color="#3776AB" size={28} /> },
+                  { name: 'TensorFlow', icon: <SiTensorflow color="#ff6f00" size={28} /> },
+                  { name: 'TypeScript', icon: <SiTypescript color="#3178c6" size={28} /> },
                   { name: 'HTML5', icon: <FaHtml5 color="#e34c26" size={28} /> },
                 ],
                 [
-                  { name: 'Java', icon: <FaJs color="#f89820" size={28} /> },
-                  { name: 'Matplotlib', icon: <FaJs color="#11557c" size={28} /> },
-                  { name: 'Bokeh', icon: <FaJs color="#e76f51" size={28} /> },
+                  { name: 'Java', icon: <FaJava color="#f89820" size={28} /> },
+                  { name: 'Matplotlib', icon: <SiPlotly color="#11557c" size={28} /> },
+                  { name: 'Bokeh', icon: <FaPalette color="#e76f51" size={28} /> },
                   { name: 'CSS3', icon: <FaCss3Alt color="#2965f1" size={28} /> },
                 ],
                 [
-                  { name: 'SQL', icon: <FaJs color="#00618a" size={28} /> },
-                  { name: 'Seaborn', icon: <FaJs color="#43b7ba" size={28} /> },
-                  { name: 'AWS', icon: <FaCloud color="#ff9900" size={28} /> },
+                  { name: 'SQL', icon: <SiMysql color="#00618a" size={28} /> },
+                  { name: 'Seaborn', icon: <SiPandas color="#43b7ba" size={28} /> },
+                  { name: 'AWS', icon: <SiAmazonwebservices color="#ff9900" size={28} /> },
                   { name: 'React', icon: <FaReact color="#61dafb" size={28} /> },
                 ],
               ].map((col, colIdx) => (
