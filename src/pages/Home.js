@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaExternalLinkAlt, FaGithub, FaQuoteLeft, FaEnvelope, FaLinkedin, FaReact, FaJs, FaCss3Alt, FaHtml5, FaCloud, FaPython, FaJava, FaPalette } from 'react-icons/fa';
-import { SiTensorflow, SiTypescript, SiPlotly, SiPandas, SiAmazonwebservices, SiMysql } from 'react-icons/si';
+import { SiTensorflow, SiTypescript, SiPlotly, SiPandas, SiAmazonwebservices, SiMysql, SiSpringboot, SiDocker, SiJenkins, SiFlask, SiOpencv } from 'react-icons/si';
 
 // Contact form section for Home.js using @formspree/react
 import { useForm, ValidationError } from '@formspree/react';
@@ -80,44 +80,36 @@ const techStack = [
 // Real GitHub projects data
 const projects = [
   {
-    title: 'educonnect-app',
-    description: 'A web application for educational connectivity and collaboration.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
-    tech: [<FaJs />],
+    title: 'Kobe Bryant Career Visualization App',
+    description: `• Built a serverless analytics dashboard with AWS Lambda, API Gateway, and DynamoDB to surface season-wise stats for Kobe Bryant.\n• Integrated Bokeh and Plotly visualizations so users can explore trends and comparisons in real time.\n• Automated Python and Pandas pipelines that prepare and load datasets into DynamoDB, cutting data processing time by 40%.`,
+    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=600&q=80',
+    tech: [<FaPython color="#3776AB" />, <SiAmazonwebservices color="#ff9900" />, <SiPlotly color="#42a5f5" />],
     live: '',
-    github: 'https://github.com/ramkumar122/educonnect-app',
+    github: 'https://github.com/ramkumar122/kobe-bryant-career-visualization-app',
   },
   {
-    title: 'fingerprint-voting-system',
-    description: 'A Python-based fingerprint voting system for secure elections.',
+    title: 'Blood Bank Management System',
+    description: `• Delivered a full-stack platform for donor management and inventory tracking with Spring Boot REST APIs and React dashboards.\n• Optimized MySQL schemas with indexing for fast queries across large datasets and real-time hospital inventory updates.\n• Added Spring Security role-based access and Jenkins/Docker CI/CD pipelines to ship secure, zero-downtime releases.`,
+    image: 'https://media.gettyimages.com/id/99310904/photo/donated-blood.jpg?s=612x612&w=gi&k=20&c=cI2h-Opj9O0gZCUa4jxz2pNBldoQYPExR2mJRm5NbGE=',
+    tech: [<SiSpringboot color="#6db33f" />, <FaReact color="#61dafb" />, <SiMysql color="#00618a" />, <SiDocker color="#2496ed" />],
+    live: '',
+    github: 'https://github.com/ramkumar122/blood-bank',
+  },
+  {
+    title: 'Fingerprint Voting System',
+    description: `• Engineered biometric authentication using OpenCV and SIFT to reduce false-positive voter matches by 92%.\n• Built RESTful Flask services for voter registration, vote casting, and encrypted tallying backed by MySQL.\n• Produced real-time election dashboards with Flask-Bokeh integration to track participation and results securely.`,
     image: 'https://s39569.pcdn.co/wp-content/uploads/2023/07/digital-fingerprint-on-black-screen.jpg',
-    tech: [<FaJs />],
+    tech: [<SiFlask color="#ffffff" />, <SiOpencv color="#5c6bc0" />, <SiMysql color="#00618a" />, <FaPython color="#3776AB" />],
     live: '',
     github: 'https://github.com/ramkumar122/fingerprint-voting-system',
   },
   {
-    title: 'my-s3-upload-project',
-    description: 'A project for uploading files to AWS S3 using HCL.',
-    image: 'https://meta-l.cdn.bubble.io/cdn-cgi/image/w=,h=,f=auto,dpr=1,fit=contain/f1684313559418x123725927220291300/aws-s3-logo.png',
-    tech: [<FaCloud />],
+    title: 'Secure Task Management System',
+    description: `• Developed Spring Boot APIs for task creation, assignment, and tracking to streamline team workflows.\n• Implemented JWT-backed role-based permissions to mitigate OWASP Top 10 risks and enforce secure access control.\n• Deployed the platform on AWS with Dockerized CI/CD pipelines via Jenkins for automated, reliable releases.`,
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
+    tech: [<SiSpringboot color="#6db33f" />, <SiAmazonwebservices color="#ff9900" />, <SiDocker color="#2496ed" />, <SiJenkins color="#d33833" />],
     live: '',
-    github: 'https://github.com/ramkumar122/my-s3-upload-project',
-  },
-  {
-    title: '2048-game',
-    description: 'Its a web 2048 game.',
-    image: 'https://m.media-amazon.com/images/I/41RCIHMHFDL.png',
-    tech: [<FaJs />],
-    live: '',
-    github: 'https://github.com/ramkumar122/2048-game',
-  },
-  {
-    title: 'blood-bank',
-    description: 'A blood bank management system.',
-    image: 'https://media.gettyimages.com/id/99310904/photo/donated-blood.jpg?s=612x612&w=gi&k=20&c=cI2h-Opj9O0gZCUa4jxz2pNBldoQYPExR2mJRm5NbGE=',
-    tech: [<FaJs />],
-    live: '',
-    github: 'https://github.com/ramkumar122/blood-bank',
+    github: 'https://github.com/ramkumar122/SecureTaskManagementSystem',
   },
 ];
 
@@ -143,18 +135,13 @@ const experience = [
     role: 'Software Development Engineer Intern',
     company: 'Amazon',
     period: 'May 2025 - Aug 2025',
-    description: `• Designed and implemented AWS CDK constructs for scalable infrastructure automation.
-• Automated certificate rotation processes to enhance system security.
-• Developed monitoring and alerting solutions to improve operational reliability.
-• Collaborated with cross-functional teams to deliver high-impact features on time.`
+    description: `• Created reusable AWS CDK constructs for IAM Roles Anywhere, adding smart defaults and automating policies to cut certificate onboarding time by 30%.\n• Streamlined cross-region certificate workflows with Lambda, EventBridge, and S3, enabling secure certificate delivery to AWS GovCloud and reducing manual configuration by 45%.\n• Built Lambda-based certificate rotation with EventBridge triggers that maintained continuous trust for external workloads and prevented downtime during renewals.\n• Standardized trust anchor provisioning through CloudFormation, rolling out templated IaC deployments that eliminated configuration drift across regions.\n• Designed and implemented end-to-end integration tests with Jest and Pytest to validate Lambda and API Gateway integrations, minimizing post-release issues.\n• Partnered with security engineers to introduce certificate-based authentication for internal services, raising compliance posture by 25% without sacrificing developer velocity.`
   },
   {
-    role: 'UI/UX Coordinator',
-    company: 'Arizona State University',
-    period: 'August 2021 - May 2022',
-    description: `• Coordinated UI/UX design efforts for student projects.
-• Led design sprints and workshops to foster innovation.
-• Conducted user research and usability testing to improve product designs.`
+    role: 'UI/UX Event Coordinator',
+    company: 'Anil Neerukonda Institute of Technology and Sciences',
+    period: 'Aug 2021 - May 2022',
+    description: `• Led front-end workshops for 150+ students on HTML, CSS, and JavaScript, boosting practical coding accuracy by 35%.\n• Guided participants through UX design critiques and interactive challenges that improved interface quality scores by 25%.\n• Reviewed student UI/UX submissions with peer rubrics, mentoring teams on responsive patterns and layout optimization.\n• Streamlined session logistics and documentation to enhance engagement and reduce delays in workshop kickoff.\n• Curated hands-on learning labs covering accessibility best practices, raising project compliance with WCAG guidelines.\n• Coordinated cross-team hackathons focused on collaborative problem solving, increasing project evaluation scores by 28%.`
   }
 ];
 
@@ -206,13 +193,13 @@ const Home = () => {
             Software Developer &amp; IT Graduate
           </motion.p>
       <motion.div className="home-socials" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.7 }}>
-        <a href="mailto:rammeenavalli0@gmail.com" className="home-social-link"><FaEnvelope /></a>
+        <a href="mailto:rammeenavalli1@gmail.com" className="home-social-link"><FaEnvelope /></a>
         <a href="https://www.linkedin.com/in/ram-meenavalli-671173222/" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaLinkedin /></a>
         <a href="https://github.com/ramkumar122?tab=repositories" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaGithub /></a>
       </motion.div>
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <motion.a
-              href="https://docs.google.com/document/d/140VmKZvCmVAlrEEah1YNtMGDFcH7R-tt/edit?usp=sharing&ouid=116272931770246451848&rtpof=true&sd=true"
+              href="https://drive.google.com/file/d/1OucRE5pr_aa2OR4NjEo9vaIajNvjqmrY/view?usp=sharing"
               className="home-cta"
               target="_blank"
               rel="noopener noreferrer"
@@ -245,7 +232,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              I am a results-driven software developer and IT graduate student at Arizona State University, passionate about building impactful digital solutions. My experience as an SDE Intern at Amazon includes designing AWS CDK constructs, automating certificate rotation, and enhancing system security. I have a strong foundation in Python, Java, SQL, and TypeScript, and enjoy leveraging machine learning and data visualization to solve real-world problems. I thrive in collaborative environments, value creative problem-solving, and am committed to continuous learning and innovation.
+              Results-driven Software Engineer with expertise in designing, developing, and deploying scalable applications using Java, Python, TypeScript, Spring Boot, Node.js, Flask, and FastAPI. Skilled in microservices, REST APIs, cloud-native architecture, AWS services (Lambda, S3, API Gateway, EventBridge, IAM, CloudFormation, RDS), and Infrastructure as Code (CDK, Terraform). Experienced in full-stack development with React.js, Redux, Next.js, secure role-based systems, and cross-functional team delivery, delivering high-performance, production-ready solutions.
             </motion.p>
           </motion.div>
           <motion.div className="skills-col" initial="hidden" animate="visible" variants={fadeSlide}>
@@ -352,7 +339,7 @@ const Home = () => {
             >
               <img src={project.image} alt={project.title} style={{ borderRadius: '6px', width: '100%', height: '160px', objectFit: 'cover', marginBottom: '0.8rem' }} />
               <h3 style={{ color: '#a78bfa', marginBottom: '0.4rem' }}>{project.title}</h3>
-              <p style={{ color: '#ddd', flexGrow: 1 }}>{project.description}</p>
+              <p style={{ color: '#ddd', flexGrow: 1, whiteSpace: 'pre-line' }}>{project.description}</p>
               <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 {project.tech.map((icon, i) => (
                   <span key={i} style={{ fontSize: '1.2rem', color: '#a78bfa' }}>{icon}</span>
