@@ -39,6 +39,7 @@
 }
 
 .navbar-item.active .navbar-link,
+.navbar-item.active .navbar-button,
 .navbar-link:hover,
 .navbar-button:hover {
   color: #ffffff;
@@ -58,7 +59,8 @@
 
 .navbar-link:hover::after,
 .navbar-button:hover::after,
-.navbar-item.active .navbar-link::after {
+.navbar-item.active .navbar-link::after,
+.navbar-item.active .navbar-button::after {
   width: 100%;
 }
 

@@ -161,12 +161,12 @@ const experience = [
     role: 'Software Development Engineer Intern',
     company: 'Amazon',
     period: 'May 2025 - Aug 2025',
-    description: `• Designed and implemented AWS CDK constructs for scalable infrastructure automation.\n• Automated certificate rotation processes to enhance system security.\n• Developed monitoring and alerting solutions to improve operational reliability.\n• Collaborated with cross-functional teams to deliver high-impact features on time.`
+    description: `• Engineered modular components for Amazon's certificate authentication platform using TypeScript and AWS CDK, streamlining configuration flows and reducing developer onboarding time by 30%.\n• Designed event-driven lifecycle workflows with validation and recovery logic, improving operational reliability by 45%.\n• Automated credential rotation using queue-based orchestration and integrity checks, enabling zero-disruption rotation cycles and removing manual coordination.\n• Refactored fragmented provisioning logic into reusable modules built on clean architecture patterns, improving maintainability for 20+ internal services and reducing configuration inconsistencies by 60%.\n• Built automated testing with Jest + PyTest and local cloud emulation, increasing coverage to 96% and lowering regression risk.`
   },
   {
     role: 'UI/UX Coordinator',
     company: 'Arizona State University',
-    period: 'May 2024 - Aug 2025',
+    period: 'May 2021 - Jan 2023',
     description: `• Coordinated UI/UX design efforts for student projects.\n• Led design sprints and workshops to foster innovation.\n• Conducted user research and usability testing to improve product designs.`
   }
 ];
@@ -283,7 +283,7 @@ const Home = () => {
           </span>
         </div>
         <div className="hero-inner">
-          <p className="hero-role">Web Developer</p>
+          <p className="hero-role">Full-Stack &amp; Cloud Developer</p>
           <h1 className="hero-title">Ramkumar Meenavalli</h1>
           <p className="hero-tagline">
             Crafting exceptional digital experiences with modern web technologies and cloud-ready
