@@ -1,388 +1,532 @@
 import '../styles/main.css';
 
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub, FaQuoteLeft, FaEnvelope, FaLinkedin, FaReact, FaJs, FaCss3Alt, FaHtml5, FaCloud, FaPython, FaJava, FaPalette } from 'react-icons/fa';
-import { SiTensorflow, SiTypescript, SiPlotly, SiPandas, SiAmazonwebservices, SiMysql, SiSpringboot, SiDocker, SiJenkins, SiFlask, SiOpencv } from 'react-icons/si';
+import {
+  FaExternalLinkAlt,
+  FaGithub,
+  FaEnvelope,
+  FaLinkedin,
+  FaReact,
+  FaCss3Alt,
+  FaCloud,
+  FaDatabase,
+  FaChartLine,
+  FaCode,
+  FaArrowRight
+} from 'react-icons/fa';
 
-// Contact form section for Home.js using @formspree/react
 import { useForm, ValidationError } from '@formspree/react';
 
-function ContactSection() {
-  const [state, handleSubmit] = useForm("mblkwzqv");
-  if (state.succeeded) {
-    return (
-      <motion.section id="contact" className="contact-section" initial="hidden" animate="visible" variants={fadeSlide} style={{ marginTop: '0' }}>
-        <div className="contact-card">
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.2rem' }}>
-            <FaEnvelope size={38} color="#a78bfa" style={{ marginBottom: '0.5rem' }} />
-            <h2 className="contact-title" style={{ marginBottom: '0.2rem' }}>Contact</h2>
-            <div style={{ width: 40, height: 3, background: 'linear-gradient(90deg,#a78bfa,#7c3aed)', borderRadius: 2, margin: '0.7rem 0 1.2rem 0' }} />
-          </div>
-          <p className="contact-success">Thank you for your message! I'll get back to you soon.</p>
-        </div>
-      </motion.section>
-    );
-  }
-  return (
-    <motion.section id="contact" className="contact-section" initial="hidden" animate="visible" variants={fadeSlide} style={{ marginTop: '0' }}>
-      <div className="contact-card">
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.2rem' }}>
-          <FaEnvelope size={38} color="#a78bfa" style={{ marginBottom: '0.5rem' }} />
-          <h2 className="contact-title" style={{ marginBottom: '0.2rem' }}>Contact</h2>
-          <div style={{ width: 40, height: 3, background: 'linear-gradient(90deg,#a78bfa,#7c3aed)', borderRadius: 2, margin: '0.7rem 0 1.2rem 0' }} />
-        </div>
-        <p className="contact-desc">Have a question or want to work together? Leave your details and I'll get back to you as soon as possible.</p>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="contact-form-row">
-            <div className="contact-form-col">
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required />
-            </div>
-            <div className="contact-form-col">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" required />
-              <ValidationError prefix="Email" field="email" errors={state.errors} />
-            </div>
-          </div>
-          <label htmlFor="message">Message</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-          <ValidationError prefix="Message" field="message" errors={state.errors} />
-          <button type="submit" className="contact-submit" disabled={state.submitting}>Submit</button>
-        </form>
-      </div>
-    </motion.section>
-  );
-}
-
-// Animation variant for fade and slide effect
 const fadeSlide = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 40 },git rebase --continue
+
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
 };
 
-// Card animation for projects
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-  hover: { scale: 1.03 }
-};
+const heroChips = ['React', 'TypeScript', 'Node.js', 'AWS', 'Azure', 'Data Viz'];
 
-// Example tech stack data
-const techStack = [
-  { name: 'React', icon: <FaReact color="#61dafb" /> },
-  { name: 'JavaScript', icon: <FaJs color="#f7df1e" /> },
-  { name: 'CSS3', icon: <FaCss3Alt color="#2965f1" /> },
-  { name: 'HTML5', icon: <FaHtml5 color="#e34c26" /> },
-];
-
-// Real GitHub projects data
-const projects = [
+const expertise = [
   {
-    title: 'Kobe Bryant Career Visualization App',
-    description: `• Built a serverless analytics dashboard with AWS Lambda, API Gateway, and DynamoDB to surface season-wise stats for Kobe Bryant.\n• Integrated Bokeh and Plotly visualizations so users can explore trends and comparisons in real time.\n• Automated Python and Pandas pipelines that prepare and load datasets into DynamoDB, cutting data processing time by 40%.`,
-    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=600&q=80',
-    tech: [<FaPython color="#3776AB" />, <SiAmazonwebservices color="#ff9900" />, <SiPlotly color="#42a5f5" />],
-    live: '',
-    github: 'https://github.com/ramkumar122/kobe-bryant-career-visualization-app',
+    title: 'Frontend Development',
+    icon: <FaCode />,
+    items: [
+      { label: 'React & UI Systems', value: 92 },
+      { label: 'TypeScript', value: 88 },
+      { label: 'Modern CSS', value: 90 },
+      { label: 'UX Motion', value: 84 }
+    ]
   },
   {
-    title: 'Blood Bank Management System',
-    description: `• Delivered a full-stack platform for donor management and inventory tracking with Spring Boot REST APIs and React dashboards.\n• Optimized MySQL schemas with indexing for fast queries across large datasets and real-time hospital inventory updates.\n• Added Spring Security role-based access and Jenkins/Docker CI/CD pipelines to ship secure, zero-downtime releases.`,
-    image: 'https://media.gettyimages.com/id/99310904/photo/donated-blood.jpg?s=612x612&w=gi&k=20&c=cI2h-Opj9O0gZCUa4jxz2pNBldoQYPExR2mJRm5NbGE=',
-    tech: [<SiSpringboot color="#6db33f" />, <FaReact color="#61dafb" />, <SiMysql color="#00618a" />, <SiDocker color="#2496ed" />],
-    live: '',
-    github: 'https://github.com/ramkumar122/blood-bank',
+    title: 'Backend & APIs',
+    icon: <FaDatabase />,
+    items: [
+      { label: 'Python & Java', value: 88 },
+      { label: 'REST APIs', value: 86 },
+      { label: 'SQL Modeling', value: 90 },
+      { label: 'Cloud Integrations', value: 82 }
+    ]
   },
   {
-    title: 'Fingerprint Voting System',
-    description: `• Engineered biometric authentication using OpenCV and SIFT to reduce false-positive voter matches by 92%.\n• Built RESTful Flask services for voter registration, vote casting, and encrypted tallying backed by MySQL.\n• Produced real-time election dashboards with Flask-Bokeh integration to track participation and results securely.`,
-    image: 'https://s39569.pcdn.co/wp-content/uploads/2023/07/digital-fingerprint-on-black-screen.jpg',
-    tech: [<SiFlask color="#ffffff" />, <SiOpencv color="#5c6bc0" />, <SiMysql color="#00618a" />, <FaPython color="#3776AB" />],
-    live: '',
-    github: 'https://github.com/ramkumar122/fingerprint-voting-system',
-  },
-  {
-    title: 'Secure Task Management System',
-    description: `• Developed Spring Boot APIs for task creation, assignment, and tracking to streamline team workflows.\n• Implemented JWT-backed role-based permissions to mitigate OWASP Top 10 risks and enforce secure access control.\n• Deployed the platform on AWS with Dockerized CI/CD pipelines via Jenkins for automated, reliable releases.`,
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
-    tech: [<SiSpringboot color="#6db33f" />, <SiAmazonwebservices color="#ff9900" />, <SiDocker color="#2496ed" />, <SiJenkins color="#d33833" />],
-    live: '',
-    github: 'https://github.com/ramkumar122/SecureTaskManagementSystem',
-  },
-];
-
-// Example testimonials data
-const testimonials = [
-  {
-    quote: 'Alex delivered a fantastic website, on time and beyond expectations!',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-    name: 'Jane Doe',
-    title: 'Product Manager, Acme Inc.'
-  },
-  {
-    quote: 'Great communication and technical skills. Highly recommended!',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    name: 'John Smith',
-    title: 'CTO, BetaTech'
+    title: 'Cloud & DevOps',
+    icon: <FaCloud />,
+    items: [
+      { label: 'AWS CDK', value: 85 },
+      { label: 'Azure', value: 60 },
+      { label: 'CI/CD Pipelines', value: 80 },
+      { label: 'Monitoring', value: 82 },
+      { label: 'Security', value: 78 }
+    ]
   }
 ];
 
-// Example experience data
+const featuredProjects = [
+  {
+    title: 'VS Code AI Coding Assistant',
+    description: 'Extension + Azure-hosted inference proxy with streaming chat and local history.',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'Dedicated chat panel with streaming responses and multi-turn history',
+      'Azure OpenAI integration with configurable model and temperature',
+      'Azure Functions proxy with Key Vault secrets and request policies',
+      'App Insights telemetry for reliability and latency tracking'
+    ],
+    stack: ['TypeScript', 'VS Code API', 'Azure OpenAI', 'Azure Functions', 'Key Vault', 'App Insights'],
+    github: ''
+  },
+  {
+    title: 'educonnect-app',
+    description: 'A web application for educational connectivity and collaboration.',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
+    highlights: ['Collaboration-first workflows', 'Role-based access', 'Responsive UI delivery'],
+    stack: ['Full-stack', 'Collaboration', 'Education'],
+    github: 'https://github.com/ramkumar122/educonnect-app'
+  },
+  {
+    title: 'fingerprint-voting-system',
+    description: 'A Python-based fingerprint voting system for secure elections.',
+    image: 'https://s39569.pcdn.co/wp-content/uploads/2023/07/digital-fingerprint-on-black-screen.jpg',
+    highlights: ['Biometric verification', 'Secure voting flows', 'Audit-friendly records'],
+    stack: ['Python', 'Security', 'Data integrity'],
+    github: 'https://github.com/ramkumar122/fingerprint-voting-system'
+  },
+  {
+    title: 'my-s3-upload-project',
+    description: 'A project for uploading files to AWS S3 using HCL.',
+    image: 'https://meta-l.cdn.bubble.io/cdn-cgi/image/w=,h=,f=auto,dpr=1,fit=contain/f1684313559418x123725927220291300/aws-s3-logo.png',
+    highlights: ['Infrastructure as code', 'Automated upload pipelines', 'Cloud storage flows'],
+    stack: ['AWS', 'Automation', 'Cloud'],
+    github: 'https://github.com/ramkumar122/my-s3-upload-project'
+  },
+  {
+    title: 'Kobe Bryant Career Visualization App',
+    description: 'Serverless analytics app with interactive dashboards for career insights.',
+    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'Serverless AWS stack with sub-200ms query latency',
+      'Bokeh + Plotly dashboards with dynamic filters and comparisons',
+      'Python + Pandas ETL automation for clean season-level reporting'
+    ],
+    stack: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'Python', 'Pandas', 'Bokeh', 'Plotly'],
+    github: ''
+  },
+  {
+    title: 'Blood Bank Management System',
+    description: 'Full-stack donor and inventory system with real-time updates.',
+    image: 'https://media.gettyimages.com/id/99310904/photo/donated-blood.jpg?s=612x612&w=gi&k=20&c=cI2h-Opj9O0gZCUa4jxz2pNBldoQYPExR2mJRm5NbGE=',
+    highlights: [
+      'Spring Boot REST APIs powering React dashboards',
+      'Optimized MySQL schemas with indexing for fast queries',
+      'Real-time inventory tracking for large datasets'
+    ],
+    stack: ['React', 'Spring Boot', 'MySQL'],
+    github: 'https://github.com/ramkumar122/blood-bank'
+  }
+];
+
+const capabilities = [
+  {
+    title: 'Frontend Craft',
+    icon: <FaReact />,
+    items: ['Design systems', 'Responsive UI', 'Animation polish']
+  },
+  {
+    title: 'API Engineering',
+    icon: <FaDatabase />,
+    items: ['REST APIs', 'Data modeling', 'Auth workflows']
+  },
+  {
+    title: 'Cloud Foundations',
+    icon: <FaCloud />,
+    items: ['AWS CDK', 'Infrastructure planning', 'Secure deployments']
+  },
+  {
+    title: 'Data Storytelling',
+    icon: <FaChartLine />,
+    items: ['Dashboards', 'Insights', 'Reporting']
+  },
+  {
+    title: 'Interface Styling',
+    icon: <FaCss3Alt />,
+    items: ['Modern CSS', 'Theming', 'Accessibility']
+  },
+  {
+    title: 'Product Delivery',
+    icon: <FaCode />,
+    items: ['Agile teamwork', 'Documentation', 'Quality reviews']
+  }
+];
+
 const experience = [
   {
     role: 'Software Development Engineer Intern',
     company: 'Amazon',
     period: 'May 2025 - Aug 2025',
-    description: `• Created reusable AWS CDK constructs for IAM Roles Anywhere, adding smart defaults and automating policies to cut certificate onboarding time by 30%.\n• Streamlined cross-region certificate workflows with Lambda, EventBridge, and S3, enabling secure certificate delivery to AWS GovCloud and reducing manual configuration by 45%.\n• Built Lambda-based certificate rotation with EventBridge triggers that maintained continuous trust for external workloads and prevented downtime during renewals.\n• Standardized trust anchor provisioning through CloudFormation, rolling out templated IaC deployments that eliminated configuration drift across regions.\n• Designed and implemented end-to-end integration tests with Jest and Pytest to validate Lambda and API Gateway integrations, minimizing post-release issues.\n• Partnered with security engineers to introduce certificate-based authentication for internal services, raising compliance posture by 25% without sacrificing developer velocity.`
+    description: `• Designed and implemented AWS CDK constructs for scalable infrastructure automation.\n• Automated certificate rotation processes to enhance system security.\n• Developed monitoring and alerting solutions to improve operational reliability.\n• Collaborated with cross-functional teams to deliver high-impact features on time.`
   },
   {
-    role: 'UI/UX Event Coordinator',
-    company: 'Anil Neerukonda Institute of Technology and Sciences',
-    period: 'Aug 2021 - May 2022',
-    description: `• Led front-end workshops for 150+ students on HTML, CSS, and JavaScript, boosting practical coding accuracy by 35%.\n• Guided participants through UX design critiques and interactive challenges that improved interface quality scores by 25%.\n• Reviewed student UI/UX submissions with peer rubrics, mentoring teams on responsive patterns and layout optimization.\n• Streamlined session logistics and documentation to enhance engagement and reduce delays in workshop kickoff.\n• Curated hands-on learning labs covering accessibility best practices, raising project compliance with WCAG guidelines.\n• Coordinated cross-team hackathons focused on collaborative problem solving, increasing project evaluation scores by 28%.`
+    role: 'UI/UX Coordinator',
+    company: 'Arizona State University',
+    period: 'May 2024 - Aug 2025',
+    description: `• Coordinated UI/UX design efforts for student projects.\n• Led design sprints and workshops to foster innovation.\n• Conducted user research and usability testing to improve product designs.`
   }
 ];
 
-const Home = () => {
-  const location = useLocation();
+const splitLines = (text) =>
+  text
+    .split('\n')
+    .map((line) => line.replace(/^•\s*/, '').trim())
+    .filter(Boolean);
 
-  React.useEffect(() => {
-    const targetSection = location.state?.scrollTo;
-    if (!targetSection) {
-      return;
-    }
-
-    const element = document.getElementById(targetSection);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      return;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      const retryElement = document.getElementById(targetSection);
-      if (retryElement) {
-        retryElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 120);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [location]);
+function ContactSection() {
+  const [state, handleSubmit] = useForm('mblkwzqv');
+  const success = state.succeeded;
 
   return (
-    <div className="portfolio-root">
-      {/* Home Section (Redesigned Hero) */}
-      <motion.section id="home" className="home-section" initial="hidden" animate="visible" variants={fadeSlide}>
-        <div className="home-center">
-          {/* No photo for minimal hero, as requested */}
-          <motion.h1 
-            className="home-title"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Ramkumar Meenavalli
-          </motion.h1>
-          <motion.p 
-            className="home-subtitle"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            Software Developer &amp; IT Graduate
-          </motion.p>
-      <motion.div className="home-socials" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.7 }}>
-        <a href="mailto:rammeenavalli1@gmail.com" className="home-social-link"><FaEnvelope /></a>
-        <a href="https://www.linkedin.com/in/ram-meenavalli-671173222/" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaLinkedin /></a>
-        <a href="https://github.com/ramkumar122?tab=repositories" target="_blank" rel="noopener noreferrer" className="home-social-link"><FaGithub /></a>
-      </motion.div>
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <motion.a
-              href="https://drive.google.com/file/d/1OucRE5pr_aa2OR4NjEo9vaIajNvjqmrY/view?usp=sharing"
-              className="home-cta"
+    <motion.section
+      id="contact"
+      className="section contact-section"
+      initial="hidden"
+      animate="visible"
+      variants={fadeSlide}
+    >
+      <div className="section-header">
+        <div>
+          <p className="section-kicker">Contact</p>
+          <h2 className="section-title">Let&#39;s build something amazing.</h2>
+        </div>
+        <p className="section-subtitle">
+          Looking for a developer who can craft high-performance, interactive web experiences?
+        </p>
+      </div>
+      <div className="contact-grid">
+        <div className="contact-panel">
+          <h3 className="contact-title">Ready to collaborate?</h3>
+          <p className="contact-desc">
+            Share a bit about your project or role. I&#39;ll respond with ideas, timelines, and
+            next steps.
+          </p>
+          <div className="contact-links">
+            <a href="mailto:rammeenavalli0@gmail.com" className="contact-link">
+              <FaEnvelope />
+              rammeenavalli0@gmail.com
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ram-meenavalli-671173222/"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.06 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
+              className="contact-link"
             >
-              Resume <FaExternalLinkAlt />
-            </motion.a>
+              <FaLinkedin />
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/ramkumar122?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-link"
+            >
+              <FaGithub />
+              GitHub
+            </a>
           </div>
+        </div>
+        <div className="contact-form-card">
+          {success ? (
+            <div className="contact-success">
+              <FaEnvelope />
+              Thanks for the note! I&#39;ll get back to you soon.
+            </div>
+          ) : (
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="contact-form-row">
+                <div className="contact-form-col">
+                  <label htmlFor="name">Name</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div className="contact-form-col">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" name="email" required />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
+                </div>
+              </div>
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows="5" required />
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
+              <button type="submit" className="button button-primary" disabled={state.submitting}>
+                Send message
+                <FaArrowRight />
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+const Home = () => {
+  return (
+    <div className="page-shell portfolio-root">
+      <motion.section id="home" className="hero-section" initial="hidden" animate="visible" variants={fadeSlide}>
+        <div className="hero-floaters" aria-hidden="true">
+          <span className="hero-float">
+            <FaReact />
+          </span>
+          <span className="hero-float">
+            <FaCode />
+          </span>
+          <span className="hero-float">
+            <FaCloud />
+          </span>
+          <span className="hero-float">
+            <FaChartLine />
+          </span>
+        </div>
+        <div className="hero-inner">
+          <p className="hero-role">Web Developer</p>
+          <h1 className="hero-title">Ramkumar Meenavalli</h1>
+          <p className="hero-tagline">
+            Crafting exceptional digital experiences with modern web technologies and cloud-ready
+            systems.
+          </p>
+          <div className="hero-chips">
+            {heroChips.map((chip) => (
+              <span className="chip" key={chip}>
+                {chip}
+              </span>
+            ))}
+          </div>
+          <div className="hero-actions">
+            <a
+              href="#projects"
+              className="button button-primary"
+            >
+              View my work
+              <FaArrowRight />
+            </a>
+            <a href="#contact" className="button button-ghost">
+              Get in touch
+              <FaArrowRight />
+            </a>
+          </div>
+          <a
+            className="hero-resume-link"
+            href="https://docs.google.com/document/d/1cIvAtSd4-q16boNN-oTJCsnzXT7nzJad8CYh9mJypkU/edit?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View resume
+            <FaExternalLinkAlt />
+          </a>
+          <div className="hero-socials">
+            <a href="mailto:rammeenavalli0@gmail.com" className="social-link">
+              <FaEnvelope />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ram-meenavalli-671173222/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://github.com/ramkumar122?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <FaGithub />
+            </a>
+          </div>
+        </div>
+        <div className="scroll-hint">
+          <span>Scroll to explore</span>
+          <span className="scroll-arrow" />
         </div>
       </motion.section>
 
-      {/* About + Skills Section - benscott.dev inspired */}
-      <section id="about" className="about-skills-section">
-        <div className="about-skills-container">
-          <motion.div className="about-col" initial="hidden" animate="visible" variants={fadeSlide}>
-            <motion.h2 
-              className="about-title"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              About Me
-            </motion.h2>
-            <motion.p
-              className="about-desc"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Results-driven Software Engineer with expertise in designing, developing, and deploying scalable applications using Java, Python, TypeScript, Spring Boot, Node.js, Flask, and FastAPI. Skilled in microservices, REST APIs, cloud-native architecture, AWS services (Lambda, S3, API Gateway, EventBridge, IAM, CloudFormation, RDS), and Infrastructure as Code (CDK, Terraform). Experienced in full-stack development with React.js, Redux, Next.js, secure role-based systems, and cross-functional team delivery, delivering high-performance, production-ready solutions.
-            </motion.p>
-          </motion.div>
-          <motion.div className="skills-col" initial="hidden" animate="visible" variants={fadeSlide}>
-            <div className="skills-list-verticalgrid-3cols">
-              {/* 3 columns, 4 skills per column */}
-              {[
-                [
-                  { name: 'Python', icon: <FaPython color="#3776AB" size={28} /> },
-                  { name: 'TensorFlow', icon: <SiTensorflow color="#ff6f00" size={28} /> },
-                  { name: 'TypeScript', icon: <SiTypescript color="#3178c6" size={28} /> },
-                  { name: 'HTML5', icon: <FaHtml5 color="#e34c26" size={28} /> },
-                ],
-                [
-                  { name: 'Java', icon: <FaJava color="#f89820" size={28} /> },
-                  { name: 'Matplotlib', icon: <SiPlotly color="#11557c" size={28} /> },
-                  { name: 'Bokeh', icon: <FaPalette color="#e76f51" size={28} /> },
-                  { name: 'CSS3', icon: <FaCss3Alt color="#2965f1" size={28} /> },
-                ],
-                [
-                  { name: 'SQL', icon: <SiMysql color="#00618a" size={28} /> },
-                  { name: 'Seaborn', icon: <SiPandas color="#43b7ba" size={28} /> },
-                  { name: 'AWS', icon: <SiAmazonwebservices color="#ff9900" size={28} /> },
-                  { name: 'React', icon: <FaReact color="#61dafb" size={28} /> },
-                ],
-              ].map((col, colIdx) => (
-                <div className="skills-list-col" key={colIdx}>
-                  {col.map((tech, i) => (
-                    <motion.div
-                      className="skills__item"
-                      key={tech.name}
-                      initial={{ opacity: 0, y: 40 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 + (colIdx * 4 + i) * 0.08, duration: 0.6 }}
-                    >
-                      <span className="skills__icon">{tech.icon}</span>
-                      <span className="skills__label">{tech.name}</span>
-                    </motion.div>
-                  ))}
+      <section id="about" className="section about-section">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">About</p>
+            <h2 className="section-title">Designing reliable, human-centered software.</h2>
+          </div>
+          <p className="section-subtitle">
+            I partner with teams to ship clean, scalable products that feel effortless to use.
+          </p>
+        </div>
+        <div className="about-grid">
+          <div className="about-text">
+            <p>
+              I am a results-driven software developer and IT graduate student at Arizona State
+              University, passionate about building impactful digital solutions. My experience as
+              an SDE Intern at Amazon includes designing AWS CDK constructs, automating certificate
+              rotation, and enhancing system security.
+            </p>
+            <p>
+              I have a strong foundation in Python, Java, SQL, and TypeScript, and enjoy leveraging
+              machine learning and data visualization to solve real-world problems. I thrive in
+              collaborative environments, value creative problem-solving, and am committed to
+              continuous learning and innovation.
+            </p>
+          </div>
+          <div className="about-panels">
+            <div className="about-card">
+              <h3>Focus areas</h3>
+              <ul>
+                <li>Infrastructure automation &amp; reliability</li>
+                <li>Product-minded UI engineering</li>
+                <li>Data visualization &amp; insights</li>
+              </ul>
+            </div>
+            <div className="about-card">
+              <h3>How I work</h3>
+              <ul>
+                <li>Research-first collaboration</li>
+                <li>Rapid prototyping &amp; iteration</li>
+                <li>Quality checks and documentation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section expertise-section">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Technical Expertise</p>
+            <h2 className="section-title">Deep focus across the stack.</h2>
+          </div>
+        </div>
+        <div className="expertise-grid">
+          {expertise.map((group) => (
+            <div className="expertise-card" key={group.title}>
+              <div className="expertise-header">
+                <span className="expertise-icon">{group.icon}</span>
+                <h3>{group.title}</h3>
+              </div>
+              {group.items.map((item) => (
+                <div className="expertise-item" key={item.label}>
+                  <div className="expertise-row">
+                    <span>{item.label}</span>
+                    <span>{item.value}%</span>
+                  </div>
+                  <div className="expertise-bar">
+                    <span style={{ width: `${item.value}%` }} />
+                  </div>
                 </div>
               ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="experience-section" style={{ marginTop: '0.5rem' }}>
-        <motion.h2 
-          className="experience-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          Experience
-        </motion.h2>
-        <div className="experience-list">
-          {experience.map((exp, idx) => (
-            <motion.div 
-              key={idx} 
-              className="experience-item"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + idx * 0.2, duration: 0.6 }}
-              style={{ marginBottom: '1.5rem' }}
-            >
-              <h3 className="experience-role">{exp.role} <span className="experience-company">- {exp.company}</span></h3>
-              <p className="experience-period" style={{ fontStyle: 'italic', color: '#888' }}>{exp.period}</p>
-              <p className="experience-description" style={{ whiteSpace: 'pre-line' }}>{exp.description}</p>
-            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="projects-section" style={{ marginTop: '1rem' }}>
-        <motion.h2
-          className="projects-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          Projects
-        </motion.h2>
-        <div className="projects-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-          {projects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              className="project-card"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ delay: 0.2 + idx * 0.15, duration: 0.6 }}
-              style={{
-                background: '#181836',
-                borderRadius: '8px',
-                padding: '1rem',
-                width: '280px',
-                boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
+      <section id="projects" className="section projects-section">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Featured Projects</p>
+            <h2 className="section-title">Selected builds and experiments.</h2>
+          </div>
+        </div>
+        <div className="projects-stack">
+          {featuredProjects.map((project, idx) => (
+            <article
+              key={project.title}
+              className={`project-feature ${idx % 2 === 1 ? 'reverse' : ''}`}
             >
-              <img src={project.image} alt={project.title} style={{ borderRadius: '6px', width: '100%', height: '160px', objectFit: 'cover', marginBottom: '0.8rem' }} />
-              <h3 style={{ color: '#a78bfa', marginBottom: '0.4rem' }}>{project.title}</h3>
-              <p style={{ color: '#ddd', flexGrow: 1, whiteSpace: 'pre-line' }}>{project.description}</p>
-              <div style={{ marginTop: '0.8rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                {project.tech.map((icon, i) => (
-                  <span key={i} style={{ fontSize: '1.2rem', color: '#a78bfa' }}>{icon}</span>
-                ))}
+              <div className="project-content">
+                <div>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-desc">{project.description}</p>
+                </div>
+                <ul className="project-highlights">
+                  {project.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <div className="project-meta">
+                  {project.stack.map((item) => (
+                    <span className="project-chip" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <div className="project-links">
+                  {project.github && (
+                    <a className="project-link" href={project.github} target="_blank" rel="noopener noreferrer">
+                      View GitHub
+                    </a>
+                  )}
+                </div>
               </div>
-              <a href={project.github} target="_blank" rel="noopener noreferrer" style={{ marginTop: '0.8rem', color: '#7c3aed', fontWeight: 'bold', textDecoration: 'none' }}>
-                View on GitHub
-              </a>
-            </motion.div>
+              <div className="project-media">
+                <img src={project.image} alt={project.title} />
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Approach Section */}
-      <motion.section id="approach" className="approach-section" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeSlide}>
-        <h2 className="approach-title">My Approach</h2>
-        <div className="approach-list">
-          <div className="approach-card">
-            <div className="approach-step">1</div>
-            <h4 className="approach-step-title">Planning</h4>
-            <p className="approach-step-desc">Understand client needs, define goals, and create a clear roadmap for success.</p>
-          </div>
-          <div className="approach-card">
-            <div className="approach-step">2</div>
-            <h4 className="approach-step-title">Development</h4>
-            <p className="approach-step-desc">Build robust, scalable, and maintainable solutions using modern technologies.</p>
-          </div>
-          <div className="approach-card">
-            <div className="approach-step">3</div>
-            <h4 className="approach-step-title">Launch</h4>
-            <p className="approach-step-desc">Deploy, monitor, and support the product for a seamless user experience.</p>
+      <section className="section capabilities-section">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Modern Web Capabilities</p>
+            <h2 className="section-title">What I bring to the table.</h2>
           </div>
         </div>
-      </motion.section>
+        <div className="capabilities-grid">
+          {capabilities.map((capability) => (
+            <div className="capability-card" key={capability.title}>
+              <div className="capability-header">
+                <span className="capability-icon">{capability.icon}</span>
+                <h3>{capability.title}</h3>
+              </div>
+              <ul>
+                {capability.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
 
-  {/* Contact Section */}
+      <section id="experience" className="section experience-section">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Experience</p>
+            <h2 className="section-title">Building real-world impact.</h2>
+          </div>
+        </div>
+        <div className="timeline">
+          {experience.map((exp) => (
+            <div className="timeline-item" key={exp.role}>
+              <div className="timeline-marker" />
+              <div className="timeline-content">
+                <div className="timeline-header">
+                  <div>
+                    <h3 className="timeline-role">{exp.role}</h3>
+                    <p className="timeline-company">{exp.company}</p>
+                  </div>
+                  <span className="timeline-period">{exp.period}</span>
+                </div>
+                <ul className="timeline-list">
+                  {splitLines(exp.description).map((line) => (
+                    <li key={`${exp.role}-${line}`}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <ContactSection />
 
-      {/* Footer */}
       <footer className="footer-section">
-        <div className="footer-socials">
-        </div>
-        <div className="footer-copy"></div>
+        <p>Designed &amp; built by Ramkumar Meenavalli.</p>
       </footer>
     </div>
   );
