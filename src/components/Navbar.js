@@ -8,6 +8,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = React.useState('home');
 
   const scrollToSection = (sectionId) => {
+    setActiveSection(sectionId);
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -31,19 +32,19 @@ const Navbar = () => {
     }
 
     const sectionIds = ['home', 'about', 'experience', 'projects', 'contact'];
-    const triggerLine = 160;
+    const offset = 200;
     let ticking = false;
 
     const updateActive = () => {
       let current = 'home';
+      const scrollPos = window.scrollY + offset;
 
       sectionIds.forEach((id) => {
         const element = document.getElementById(id);
         if (!element) {
           return;
         }
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= triggerLine) {
+        if (element.offsetTop <= scrollPos) {
           current = id;
         }
       });

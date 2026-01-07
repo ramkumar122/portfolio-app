@@ -71,8 +71,21 @@ const featuredProjects = [
       'App Insights telemetry for reliability and latency tracking'
     ],
     stack: ['TypeScript', 'VS Code API', 'Azure OpenAI', 'Azure Functions', 'Key Vault', 'App Insights'],
-    github: ''
+    github: 'https://github.com/ramkumar122/aiagent'
   },
+  {
+    title: 'High-Throughput Inventory Query Service',
+    description: 'Spring Boot service for ingesting and querying resource-like inventory data.',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'Filterable APIs with consistent response contracts for inventory queries',
+      'Batch writes, connection pooling, and indexed schemas for faster performance',
+      'Structured logging, health checks, and unit/integration tests'
+    ],
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit'],
+    github: 'https://github.com/ramkumar122/inventory-service'
+  },
+  /*
   {
     title: 'educonnect-app',
     description: 'A web application for educational connectivity and collaboration.',
@@ -89,6 +102,7 @@ const featuredProjects = [
     stack: ['Python', 'Security', 'Data integrity'],
     github: 'https://github.com/ramkumar122/fingerprint-voting-system'
   },
+  */
   {
     title: 'my-s3-upload-project',
     description: 'A project for uploading files to AWS S3 using HCL.',
@@ -422,6 +436,36 @@ const Home = () => {
         </div>
       </section>
 
+      <section id="experience" className="section experience-section">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Experience</p>
+            <h2 className="section-title">Building real-world impact.</h2>
+          </div>
+        </div>
+        <div className="timeline">
+          {experience.map((exp) => (
+            <div className="timeline-item" key={exp.role}>
+              <div className="timeline-marker" />
+              <div className="timeline-content">
+                <div className="timeline-header">
+                  <div>
+                    <h3 className="timeline-role">{exp.role}</h3>
+                    <p className="timeline-company">{exp.company}</p>
+                  </div>
+                  <span className="timeline-period">{exp.period}</span>
+                </div>
+                <ul className="timeline-list">
+                  {splitLines(exp.description).map((line) => (
+                    <li key={`${exp.role}-${line}`}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section id="projects" className="section projects-section">
         <div className="section-header">
           <div>
@@ -487,36 +531,6 @@ const Home = () => {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="experience" className="section experience-section">
-        <div className="section-header">
-          <div>
-            <p className="section-kicker">Experience</p>
-            <h2 className="section-title">Building real-world impact.</h2>
-          </div>
-        </div>
-        <div className="timeline">
-          {experience.map((exp) => (
-            <div className="timeline-item" key={exp.role}>
-              <div className="timeline-marker" />
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <div>
-                    <h3 className="timeline-role">{exp.role}</h3>
-                    <p className="timeline-company">{exp.company}</p>
-                  </div>
-                  <span className="timeline-period">{exp.period}</span>
-                </div>
-                <ul className="timeline-list">
-                  {splitLines(exp.description).map((line) => (
-                    <li key={`${exp.role}-${line}`}>{line}</li>
-                  ))}
-                </ul>
-              </div>
             </div>
           ))}
         </div>
