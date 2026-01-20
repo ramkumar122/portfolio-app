@@ -139,34 +139,34 @@ const featuredProjects = [
 
 const capabilities = [
   {
-    title: 'Frontend Craft',
-    icon: <FaReact />,
-    items: ['Design systems', 'Responsive UI', 'Animation polish']
-  },
-  {
-    title: 'API Engineering',
+    title: 'Backend & API Engineering',
     icon: <FaDatabase />,
-    items: ['REST APIs', 'Data modeling', 'Auth workflows']
+    items: ['REST APIs', 'Auth + validation', 'Performance tuning']
   },
   {
-    title: 'Cloud Foundations',
+    title: 'Cloud & DevOps (AWS + Azure)',
     icon: <FaCloud />,
-    items: ['AWS CDK', 'Infrastructure planning', 'Secure deployments']
+    items: ['AWS CDK / Azure Functions', 'Docker + CI/CD', 'Monitoring + logging']
   },
   {
-    title: 'Data Storytelling',
+    title: 'LLM / Agentic Systems',
     icon: <FaChartLine />,
-    items: ['Dashboards', 'Insights', 'Reporting']
+    items: ['RAG pipelines', 'Tool calling', 'Safety + evaluation']
   },
   {
-    title: 'Interface Styling',
-    icon: <FaCss3Alt />,
-    items: ['Modern CSS', 'Theming', 'Accessibility']
+    title: 'Databases & Data Modeling',
+    icon: <FaDatabase />,
+    items: ['SQL (Postgres/MySQL)', 'Indexing + query tuning', 'Schema design']
+  },
+  {
+    title: 'Testing & Reliability',
+    icon: <FaCode />,
+    items: ['Unit + integration tests', 'Quality gates', 'Incident/debugging']
   },
   {
     title: 'Product Delivery',
     icon: <FaCode />,
-    items: ['Agile teamwork', 'Documentation', 'Quality reviews']
+    items: ['Agile teamwork', 'Documentation', 'Reviews + ownership']
   }
 ];
 
@@ -389,9 +389,9 @@ const Home = () => {
             <div className="about-card">
               <h3>Focus areas</h3>
               <ul>
-                <li>Infrastructure automation &amp; reliability</li>
-                <li>Product-minded UI engineering</li>
-                <li>Data visualization &amp; insights</li>
+                <li>Backend &amp; API Engineering (Python/TypeScript)</li>
+                <li>Cloud &amp; DevOps (AWS + Azure, Docker, CI/CD)</li>
+                <li>AI/LLM Applications (Azure OpenAI, RAG, tool-calling)</li>
               </ul>
             </div>
             <div className="about-card">
