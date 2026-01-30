@@ -85,6 +85,31 @@ const featuredProjects = [
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit'],
     github: 'https://github.com/ramkumar122/inventory-service'
   },
+  {
+    title: 'AI Knowledge Q&A Platform (RAG)',
+    description: 'Full-stack RAG app where users upload docs and ask questions with grounded, cited answers.',
+    image: 'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'Document upload, retrieval, and chat UI with citations',
+      'Ingestion + retrieval services (chunking, embeddings, indexing) with JWT auth',
+      'SQLAlchemy persistence for users, documents, and chats'
+    ],
+    stack: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'RAG'],
+    github: 'https://github.com/ramkumar122/Document-Reader'
+  },
+  {
+    title: 'Spades Score Tracker',
+    description: 'Angular + TypeScript SPA for multi-player Spades scorekeeping with live leaderboard.',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
+    highlights: [
+      'House-rule scoring engine with per-round and cumulative totals',
+      'Live leaderboard for multiplayer sessions',
+      'Error-free tracking with a TypeScript scoring engine'
+    ],
+    stack: ['Angular', 'TypeScript'],
+    github: 'https://github.com/ramkumar122/spades',
+    live: 'https://ramkumar122.github.io/spades/'
+  },
   /*
   {
     title: 'educonnect-app',
@@ -500,6 +525,16 @@ const Home = () => {
                   {project.github && (
                     <a className="project-link" href={project.github} target="_blank" rel="noopener noreferrer">
                       View GitHub
+                    </a>
+                  )}
+                  {(project.live || project.demo) && (
+                    <a
+                      className="project-link"
+                      href={project.live || project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Demo
                     </a>
                   )}
                 </div>
