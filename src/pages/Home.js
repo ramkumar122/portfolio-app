@@ -1,577 +1,287 @@
 import '../styles/main.css';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  FaExternalLinkAlt,
-  FaGithub,
-  FaEnvelope,
-  FaLinkedin,
-  FaReact,
-  FaCss3Alt,
-  FaCloud,
-  FaDatabase,
-  FaChartLine,
-  FaCode,
-  FaArrowRight
-} from 'react-icons/fa';
-
+import React, { useState, useEffect } from 'react';
+import { FaEnvelope, FaLinkedin, FaMapMarkerAlt } from 'react-icons/fa';
 import { useForm, ValidationError } from '@formspree/react';
 
-const fadeSlide = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
-};
+function useTyping(text, speed) {
+  const [display, setDisplay] = useState('');
+  useEffect(() => {
+    let i = 0;
+    const start = setTimeout(() => {
+      const timer = setInterval(() => {
+        i++;
+        setDisplay(text.slice(0, i));
+        if (i >= text.length) clearInterval(timer);
+      }, speed);
+      return () => clearInterval(timer);
+    }, 400);
+    return () => clearTimeout(start);
+  }, [text, speed]);
+  return display;
+}
 
-const heroChips = ['React', 'TypeScript', 'Node.js', 'AWS', 'Azure', 'Data Viz'];
-
-const expertise = [
-  {
-    title: 'Frontend Development',
-    icon: <FaCode />,
-    items: [
-      { label: 'React & UI Systems', value: 92 },
-      { label: 'TypeScript', value: 88 },
-      { label: 'Modern CSS', value: 90 },
-      { label: 'UX Motion', value: 84 }
-    ]
-  },
-  {
-    title: 'Backend & APIs',
-    icon: <FaDatabase />,
-    items: [
-      { label: 'Python & Java', value: 88 },
-      { label: 'REST APIs', value: 86 },
-      { label: 'SQL Modeling', value: 90 },
-      { label: 'Cloud Integrations', value: 82 }
-    ]
-  },
-  {
-    title: 'Cloud & DevOps',
-    icon: <FaCloud />,
-    items: [
-      { label: 'AWS CDK', value: 85 },
-      { label: 'Azure', value: 60 },
-      { label: 'CI/CD Pipelines', value: 80 },
-      { label: 'Monitoring', value: 82 },
-      { label: 'Security', value: 78 }
-    ]
-  }
-];
-
-const featuredProjects = [
-  {
-    title: 'VS Code AI Coding Assistant',
-    description: 'Extension + Azure-hosted inference proxy with streaming chat and local history.',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'Dedicated chat panel with streaming responses and multi-turn history',
-      'Azure OpenAI integration with configurable model and temperature',
-      'Azure Functions proxy with Key Vault secrets and request policies',
-      'App Insights telemetry for reliability and latency tracking'
-    ],
-    stack: ['TypeScript', 'VS Code API', 'Azure OpenAI', 'Azure Functions', 'Key Vault', 'App Insights'],
-    github: 'https://github.com/ramkumar122/aiagent'
-  },
-  {
-    title: 'High-Throughput Inventory Query Service',
-    description: 'Spring Boot service for ingesting and querying resource-like inventory data.',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'Filterable APIs with consistent response contracts for inventory queries',
-      'Batch writes, connection pooling, and indexed schemas for faster performance',
-      'Structured logging, health checks, and unit/integration tests'
-    ],
-    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit'],
-    github: 'https://github.com/ramkumar122/inventory-service'
-  },
-  {
-    title: 'AI Knowledge Q&A Platform (RAG)',
-    description: 'Full-stack RAG app where users upload docs and ask questions with grounded, cited answers.',
-    image: 'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'Document upload, retrieval, and chat UI with citations',
-      'Ingestion + retrieval services (chunking, embeddings, indexing) with JWT auth',
-      'SQLAlchemy persistence for users, documents, and chats'
-    ],
-    stack: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'RAG'],
-    github: 'https://github.com/ramkumar122/Document-Reader'
-  },
-  {
-    title: 'Spades Score Tracker',
-    description: 'Angular + TypeScript SPA for multi-player Spades scorekeeping with live leaderboard.',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'House-rule scoring engine with per-round and cumulative totals',
-      'Live leaderboard for multiplayer sessions',
-      'Error-free tracking with a TypeScript scoring engine'
-    ],
-    stack: ['Angular', 'TypeScript'],
-    github: 'https://github.com/ramkumar122/spades',
-    live: 'https://ramkumar122.github.io/spades/'
-  },
-  /*
-  {
-    title: 'educonnect-app',
-    description: 'A web application for educational connectivity and collaboration.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
-    highlights: ['Collaboration-first workflows', 'Role-based access', 'Responsive UI delivery'],
-    stack: ['Full-stack', 'Collaboration', 'Education'],
-    github: 'https://github.com/ramkumar122/educonnect-app'
-  },
-  {
-    title: 'fingerprint-voting-system',
-    description: 'A Python-based fingerprint voting system for secure elections.',
-    image: 'https://s39569.pcdn.co/wp-content/uploads/2023/07/digital-fingerprint-on-black-screen.jpg',
-    highlights: ['Biometric verification', 'Secure voting flows', 'Audit-friendly records'],
-    stack: ['Python', 'Security', 'Data integrity'],
-    github: 'https://github.com/ramkumar122/fingerprint-voting-system'
-  },
-  */
-  {
-    title: 'my-s3-upload-project',
-    description: 'A project for uploading files to AWS S3 using HCL.',
-    image: 'https://meta-l.cdn.bubble.io/cdn-cgi/image/w=,h=,f=auto,dpr=1,fit=contain/f1684313559418x123725927220291300/aws-s3-logo.png',
-    highlights: ['Infrastructure as code', 'Automated upload pipelines', 'Cloud storage flows'],
-    stack: ['AWS', 'Automation', 'Cloud'],
-    github: 'https://github.com/ramkumar122/my-s3-upload-project'
-  },
-  {
-    title: 'Kobe Bryant Career Visualization App',
-    description: 'Serverless analytics app with interactive dashboards for career insights.',
-    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
-    highlights: [
-      'Serverless AWS stack with sub-200ms query latency',
-      'Bokeh + Plotly dashboards with dynamic filters and comparisons',
-      'Python + Pandas ETL automation for clean season-level reporting'
-    ],
-    stack: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'Python', 'Pandas', 'Bokeh', 'Plotly'],
-    github: ''
-  },
-  {
-    title: 'Blood Bank Management System',
-    description: 'Full-stack donor and inventory system with real-time updates.',
-    image: 'https://media.gettyimages.com/id/99310904/photo/donated-blood.jpg?s=612x612&w=gi&k=20&c=cI2h-Opj9O0gZCUa4jxz2pNBldoQYPExR2mJRm5NbGE=',
-    highlights: [
-      'Spring Boot REST APIs powering React dashboards',
-      'Optimized MySQL schemas with indexing for fast queries',
-      'Real-time inventory tracking for large datasets'
-    ],
-    stack: ['React', 'Spring Boot', 'MySQL'],
-    github: 'https://github.com/ramkumar122/blood-bank'
-  }
-];
-
-const capabilities = [
-  {
-    title: 'Backend & API Engineering',
-    icon: <FaDatabase />,
-    items: ['REST APIs', 'Auth + validation', 'Performance tuning']
-  },
-  {
-    title: 'Cloud & DevOps (AWS + Azure)',
-    icon: <FaCloud />,
-    items: ['AWS CDK / Azure Functions', 'Docker + CI/CD', 'Monitoring + logging']
-  },
-  {
-    title: 'LLM / Agentic Systems',
-    icon: <FaChartLine />,
-    items: ['RAG pipelines', 'Tool calling', 'Safety + evaluation']
-  },
-  {
-    title: 'Databases & Data Modeling',
-    icon: <FaDatabase />,
-    items: ['SQL (Postgres/MySQL)', 'Indexing + query tuning', 'Schema design']
-  },
-  {
-    title: 'Testing & Reliability',
-    icon: <FaCode />,
-    items: ['Unit + integration tests', 'Quality gates', 'Incident/debugging']
-  },
-  {
-    title: 'Product Delivery',
-    icon: <FaCode />,
-    items: ['Agile teamwork', 'Documentation', 'Reviews + ownership']
-  }
+const skills = [
+  'Python', 'Java', 'TypeScript', 'React', 'Angular',
+  'Spring Boot', 'FastAPI', 'AWS CDK', 'Docker', 'PostgreSQL',
+  'Azure', 'ML / RAG', 'REST APIs', 'Algorithms', 'System Design',
 ];
 
 const experience = [
   {
     role: 'Software Development Engineer Intern',
     company: 'Amazon',
-    period: 'May 2025 - Aug 2025',
-    description: `• Engineered modular components for Amazon's certificate authentication platform using TypeScript and AWS CDK, streamlining configuration flows and reducing developer onboarding time by 30%.\n• Designed event-driven lifecycle workflows with validation and recovery logic, improving operational reliability by 45%.\n• Automated credential rotation using queue-based orchestration and integrity checks, enabling zero-disruption rotation cycles and removing manual coordination.\n• Refactored fragmented provisioning logic into reusable modules built on clean architecture patterns, improving maintainability for 20+ internal services and reducing configuration inconsistencies by 60%.\n• Built automated testing with Jest + PyTest and local cloud emulation, increasing coverage to 96% and lowering regression risk.`
+    period: 'MAY 2025 – AUG 2025',
+    bullets: [
+      'Built modular AWS CDK components for certificate authentication, cutting developer onboarding by 30%.',
+      'Designed event-driven lifecycle workflows, improving operational reliability by 45%.',
+      'Automated credential rotation with zero-disruption cycles via queue-based orchestration.',
+      'Refactored provisioning logic into reusable modules across 20+ internal services.',
+      'Built Jest + PyTest test suites achieving 96% coverage, reducing regression risk.',
+    ],
+  },
+  {
+    role: 'Full Stack Developer',
+    company: 'Loop Roots Foundation',
+    period: 'FEB 2026 – PRESENT',
+    bullets: [
+      'Designed and implemented a platform using Python, Node.js, React, TypeScript, PostgreSQL, Redis, and AWS for real-time workflow orchestration and user-facing product features.',
+      'Developed backend REST APIs and service workflows for lifecycle operations, asynchronous communication, and scalable data handling across distributed components.',
+      'Optimized PostgreSQL schemas and query flows, improving API performance by 25%.',
+      'Added logging, monitoring, and validation mechanisms to improve debugging efficiency, reliability, and maintainability.',
+      'Translated product and workflow needs into end-to-end technical solutions with attention to usability, API design, and delivery speed.',
+    ],
   },
   {
     role: 'UI/UX Coordinator',
     company: 'Arizona State University',
-    period: 'May 2021 - Jan 2023',
-    description: `• Coordinated UI/UX design efforts for student projects.\n• Led design sprints and workshops to foster innovation.\n• Conducted user research and usability testing to improve product designs.`
-  }
+    period: 'MAY 2021 – JAN 2023',
+    bullets: [
+      'Coordinated UI/UX design efforts for student projects across multiple departments.',
+      'Led design sprints and workshops, fostering innovation and cross-team collaboration.',
+      'Conducted user research and usability testing to improve product design quality.',
+    ],
+  },
 ];
 
-const splitLines = (text) =>
-  text
-    .split('\n')
-    .map((line) => line.replace(/^•\s*/, '').trim())
-    .filter(Boolean);
+const projects = [
+  {
+    title: 'VS Code AI Coding Assistant',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+    desc: 'Extension + Azure-hosted inference proxy with streaming chat, multi-turn history, and App Insights telemetry.',
+    tags: ['TypeScript', 'VS Code API', 'Azure OpenAI', 'Azure Functions'],
+    github: 'https://github.com/ramkumar122/aiagent',
+  },
+  {
+    title: 'AI Knowledge Q&A Platform (RAG)',
+    image: 'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=800&q=80',
+    desc: 'Upload documents, ask questions, get cited answers. Full-stack RAG with JWT auth and SQLAlchemy persistence.',
+    tags: ['FastAPI', 'React', 'PostgreSQL', 'RAG', 'TypeScript'],
+    github: 'https://github.com/ramkumar122/Document-Reader',
+  },
+  {
+    title: 'High-Throughput Inventory Service',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    desc: 'Spring Boot microservice for inventory queries with connection pooling, batch writes, and 96% test coverage.',
+    tags: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit'],
+    github: 'https://github.com/ramkumar122/inventory-service',
+  },
+  {
+    title: 'Kobe Bryant Career Visualization',
+    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80',
+    desc: 'Serverless analytics dashboard with sub-200ms latency, Bokeh + Plotly visualizations, and Python ETL.',
+    tags: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'Python', 'Plotly'],
+    github: '',
+  },
+  {
+    title: 'Blood Bank Management System',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+    desc: 'Full-stack donor & inventory system with real-time tracking and optimized MySQL schemas.',
+    tags: ['React', 'Spring Boot', 'MySQL'],
+    github: 'https://github.com/ramkumar122/blood-bank',
+  },
+  {
+    title: 'Spades Score Tracker',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
+    desc: 'Angular SPA for multi-player Spades scorekeeping with a live leaderboard and TypeScript scoring engine.',
+    tags: ['Angular', 'TypeScript'],
+    github: 'https://github.com/ramkumar122/spades',
+    live: 'https://ramkumar122.github.io/spades/',
+  },
+];
 
 function ContactSection() {
   const [state, handleSubmit] = useForm('mblkwzqv');
-  const success = state.succeeded;
+
+  if (state.succeeded) {
+    return <p className="contact-success">Thanks! I'll get back to you soon.</p>;
+  }
 
   return (
-    <motion.section
-      id="contact"
-      className="section contact-section"
-      initial="hidden"
-      animate="visible"
-      variants={fadeSlide}
-    >
-      <div className="section-header">
-        <div>
-          <p className="section-kicker">Contact</p>
-          <h2 className="section-title">Let&#39;s build something amazing.</h2>
-        </div>
-        <p className="section-subtitle">
-          Looking for a developer who can craft high-performance, interactive web experiences?
-        </p>
+    <form className="contact-form" onSubmit={handleSubmit}>
+      <div className="contact-form-row-2">
+        <input className="contact-input" type="text" name="name" placeholder="Name" required />
+        <input className="contact-input" type="email" name="email" placeholder="Email" required />
       </div>
-      <div className="contact-grid">
-        <div className="contact-panel">
-          <h3 className="contact-title">Ready to collaborate?</h3>
-          <p className="contact-desc">
-            Share a bit about your project or role. I&#39;ll respond with ideas, timelines, and
-            next steps.
-          </p>
-          <div className="contact-links">
-            <a href="mailto:rammeenavalli0@gmail.com" className="contact-link">
-              <FaEnvelope />
-              rammeenavalli0@gmail.com
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ram-meenavalli-671173222/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-link"
-            >
-              <FaLinkedin />
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/ramkumar122?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-link"
-            >
-              <FaGithub />
-              GitHub
-            </a>
-          </div>
-        </div>
-        <div className="contact-form-card">
-          {success ? (
-            <div className="contact-success">
-              <FaEnvelope />
-              Thanks for the note! I&#39;ll get back to you soon.
-            </div>
-          ) : (
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="contact-form-row">
-                <div className="contact-form-col">
-                  <label htmlFor="name">Name</label>
-                  <input type="text" id="name" name="name" required />
-                </div>
-                <div className="contact-form-col">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" name="email" required />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} />
-                </div>
-              </div>
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="5" required />
-              <ValidationError prefix="Message" field="message" errors={state.errors} />
-              <button type="submit" className="button button-primary" disabled={state.submitting}>
-                Send message
-                <FaArrowRight />
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    </motion.section>
+      <ValidationError prefix="Email" field="email" errors={state.errors} />
+      <input className="contact-input" type="text" name="subject" placeholder="Subject" />
+      <textarea className="contact-input" name="message" placeholder="Message" rows={5} required />
+      <ValidationError prefix="Message" field="message" errors={state.errors} />
+      <button className="contact-submit" type="submit" disabled={state.submitting}>
+        Submit
+      </button>
+    </form>
   );
 }
 
 const Home = () => {
+  const typed = useTyping('I_love_to_build', 80);
+
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="page-shell portfolio-root">
-      <motion.section id="home" className="hero-section" initial="hidden" animate="visible" variants={fadeSlide}>
-        <div className="hero-floaters" aria-hidden="true">
-          <span className="hero-float">
-            <FaReact />
-          </span>
-          <span className="hero-float">
-            <FaCode />
-          </span>
-          <span className="hero-float">
-            <FaCloud />
-          </span>
-          <span className="hero-float">
-            <FaChartLine />
-          </span>
+    <div>
+      {/* ── HERO ── */}
+      <section id="home" className="hero-section">
+        <div className="hero-circle">
+          <img src={`${process.env.PUBLIC_URL}/photo.jpg`} alt="Ramkumar Meenavalli" className="hero-avatar" />
+          <p className="hero-role">IT Graduate Student · Amazon SDE Intern</p>
+          <h1 className="hero-title">
+            {typed}
+            <span className="hero-cursor" />
+          </h1>
+          <nav className="hero-nav">
+            <button className="hero-nav-link" onClick={() => scrollTo('about')}>ABOUT</button>
+            <button className="hero-nav-link" onClick={() => scrollTo('experience')}>EXPERIENCE</button>
+            <button className="hero-nav-link" onClick={() => scrollTo('skills')}>SKILLS</button>
+            <button className="hero-nav-link" onClick={() => scrollTo('projects')}>PROJECTS</button>
+          </nav>
         </div>
-        <div className="hero-inner">
-          <p className="hero-role">Full-Stack &amp; Cloud Developer</p>
-          <h1 className="hero-title">Ramkumar Meenavalli</h1>
-          <p className="hero-tagline">
-            Crafting exceptional digital experiences with modern web technologies and cloud-ready
-            systems.
-          </p>
-          <div className="hero-chips">
-            {heroChips.map((chip) => (
-              <span className="chip" key={chip}>
-                {chip}
-              </span>
+      </section>
+
+      {/* ── ABOUT ── */}
+      <section id="about">
+        <div style={{ padding: '7rem 0' }}>
+          <p className="ms-section-label">A B O U T</p>
+          <div className="about-grid">
+            <img src={`${process.env.PUBLIC_URL}/photo.jpg`} alt="Ramkumar Meenavalli" className="about-photo" />
+            <div className="about-content">
+              <h2 className="about-content-heading">
+                Here is a little <span>background</span>
+              </h2>
+              <p className="about-content-text">
+                Hey! I'm a Information Technology graduate student at Arizona State University with a
+                passion for building scalable, reliable systems. As an SDE Intern at Amazon, I
+                shipped production infrastructure — modular AWS CDK components, event-driven
+                credential rotation workflows, and automated testing pipelines that hit 96% coverage.
+              </p>
+              <br />
+              <p className="about-content-text">
+                My foundation spans data structures & algorithms, system design, cloud engineering
+                (AWS + Azure), and AI/ML. I love bridging theory with hands-on projects — from RAG
+                platforms and serverless analytics to full-stack web apps. I'm actively looking for
+                new grad SDE roles and research opportunities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── EXPERIENCE ── */}
+      <section id="experience" style={{ padding: '7rem 0' }}>
+        <p className="ms-section-label">E X P E R I E N C E</p>
+        <div className="exp-grid">
+          {experience.map((exp) => (
+            <div className="exp-card" key={exp.role}>
+              <div className="exp-role">{exp.role}</div>
+              <div className="exp-company">{exp.company}</div>
+              <div className="exp-period">{exp.period}</div>
+              <div className="exp-desc">
+                <ul>
+                  {exp.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SKILLS ── */}
+      <section id="skills" style={{ padding: '7rem 0' }}>
+        <p className="ms-section-label">S K I L L S</p>
+        <p className="skills-subtitle">HOVER OVER A SKILL TO HIGHLIGHT</p>
+        <div className="skills-grid">
+          {skills.map((skill) => (
+            <div className="skill-circle" key={skill}>
+              {skill}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PROJECTS ── */}
+      <section id="projects" className="projects-section">
+        <p className="ms-section-label">P R O J E C T S</p>
+        <div className="projects-inner">
+          <div className="projects-grid">
+            {projects.map((p) => (
+              <div className="project-card" key={p.title}>
+                <img src={p.image} alt={p.title} className="project-card-img" />
+                <div className="project-card-body">
+                  <h3 className="project-card-title">{p.title}</h3>
+                  <p className="project-card-desc">{p.desc}</p>
+                  <div className="project-card-tags">
+                    {p.tags.map((t) => (
+                      <span className="project-tag" key={t}>{t}</span>
+                    ))}
+                  </div>
+                  <div className="project-card-links">
+                    {p.github && (
+                      <a className="project-card-link" href={p.github} target="_blank" rel="noopener noreferrer">
+                        GitHub →
+                      </a>
+                    )}
+                    {p.live && (
+                      <a className="project-card-link" href={p.live} target="_blank" rel="noopener noreferrer">
+                        Live Demo →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
-          <div className="hero-actions">
-            <a
-              href="#projects"
-              className="button button-primary"
-            >
-              View my work
-              <FaArrowRight />
-            </a>
-            <a href="#contact" className="button button-ghost">
-              Get in touch
-              <FaArrowRight />
-            </a>
-          </div>
-          <a
-            className="hero-resume-link"
-            href="https://docs.google.com/document/d/1cIvAtSd4-q16boNN-oTJCsnzXT7nzJad8CYh9mJypkU/edit?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View resume
-            <FaExternalLinkAlt />
-          </a>
-          <div className="hero-socials">
-            <a href="mailto:rammeenavalli0@gmail.com" className="social-link">
+        </div>
+      </section>
+
+      {/* ── CONTACT ── */}
+      <section id="contact" className="contact-section">
+        <p className="ms-section-label">C O N T A C T</p>
+        <div className="contact-inner">
+          <h2 className="contact-heading">
+            I have got just what you need. <span>Lets talk.</span>
+          </h2>
+          <div className="contact-info">
+            <div className="contact-info-row">
               <FaEnvelope />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ram-meenavalli-671173222/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-            >
+              <span>rammeenavalli0@gmail.com</span>
+            </div>
+            <div className="contact-info-row">
               <FaLinkedin />
-            </a>
-            <a
-              href="https://github.com/ramkumar122?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-            >
-              <FaGithub />
-            </a>
-          </div>
-        </div>
-        <div className="scroll-hint">
-          <span>Scroll to explore</span>
-          <span className="scroll-arrow" />
-        </div>
-      </motion.section>
-
-      <section id="about" className="section about-section">
-        <div className="section-header">
-          <div>
-            <p className="section-kicker">About</p>
-            <h2 className="section-title">Designing reliable, human-centered software.</h2>
-          </div>
-          <p className="section-subtitle">
-            I partner with teams to ship clean, scalable products that feel effortless to use.
-          </p>
-        </div>
-        <div className="about-grid">
-          <div className="about-text">
-            <p>
-              I am a results-driven software developer and IT graduate student at Arizona State
-              University, passionate about building impactful digital solutions. My experience as
-              an SDE Intern at Amazon includes designing AWS CDK constructs, automating certificate
-              rotation, and enhancing system security.
-            </p>
-            <p>
-              I have a strong foundation in Python, Java, SQL, and TypeScript, and enjoy leveraging
-              machine learning and data visualization to solve real-world problems. I thrive in
-              collaborative environments, value creative problem-solving, and am committed to
-              continuous learning and innovation.
-            </p>
-          </div>
-          <div className="about-panels">
-            <div className="about-card">
-              <h3>Focus areas</h3>
-              <ul>
-                <li>Backend &amp; API Engineering (Python/TypeScript)</li>
-                <li>Cloud &amp; DevOps (AWS + Azure, Docker, CI/CD)</li>
-                <li>AI/LLM Applications (Azure OpenAI, RAG, tool-calling)</li>
-              </ul>
+              <span>linkedin.com/in/ram-meenavalli-671173222</span>
             </div>
-            <div className="about-card">
-              <h3>How I work</h3>
-              <ul>
-                <li>Research-first collaboration</li>
-                <li>Rapid prototyping &amp; iteration</li>
-                <li>Quality checks and documentation</li>
-              </ul>
+            <div className="contact-info-row">
+              <FaMapMarkerAlt />
+              <span>Tempe, Arizona</span>
             </div>
           </div>
+          <ContactSection />
         </div>
       </section>
-
-      <section className="section expertise-section">
-        <div className="section-header">
-          <div>
-            <p className="section-kicker">Technical Expertise</p>
-            <h2 className="section-title">Deep focus across the stack.</h2>
-          </div>
-        </div>
-        <div className="expertise-grid">
-          {expertise.map((group) => (
-            <div className="expertise-card" key={group.title}>
-              <div className="expertise-header">
-                <span className="expertise-icon">{group.icon}</span>
-                <h3>{group.title}</h3>
-              </div>
-              {group.items.map((item) => (
-                <div className="expertise-item" key={item.label}>
-                  <div className="expertise-row">
-                    <span>{item.label}</span>
-                    <span>{item.value}%</span>
-                  </div>
-                  <div className="expertise-bar">
-                    <span style={{ width: `${item.value}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="experience" className="section experience-section">
-        <div className="section-header">
-          <div>
-            <p className="section-kicker">Experience</p>
-            <h2 className="section-title">Building real-world impact.</h2>
-          </div>
-        </div>
-        <div className="timeline">
-          {experience.map((exp) => (
-            <div className="timeline-item" key={exp.role}>
-              <div className="timeline-marker" />
-              <div className="timeline-content">
-                <div className="timeline-header">
-                  <div>
-                    <h3 className="timeline-role">{exp.role}</h3>
-                    <p className="timeline-company">{exp.company}</p>
-                  </div>
-                  <span className="timeline-period">{exp.period}</span>
-                </div>
-                <ul className="timeline-list">
-                  {splitLines(exp.description).map((line) => (
-                    <li key={`${exp.role}-${line}`}>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="projects" className="section projects-section">
-        <div className="section-header">
-          <div>
-            <p className="section-kicker">Featured Projects</p>
-            <h2 className="section-title">Selected builds and experiments.</h2>
-          </div>
-        </div>
-        <div className="projects-stack">
-          {featuredProjects.map((project, idx) => (
-            <article
-              key={project.title}
-              className={`project-feature ${idx % 2 === 1 ? 'reverse' : ''}`}
-            >
-              <div className="project-content">
-                <div>
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-desc">{project.description}</p>
-                </div>
-                <ul className="project-highlights">
-                  {project.highlights.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <div className="project-meta">
-                  {project.stack.map((item) => (
-                    <span className="project-chip" key={item}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <div className="project-links">
-                  {project.github && (
-                    <a className="project-link" href={project.github} target="_blank" rel="noopener noreferrer">
-                      View GitHub
-                    </a>
-                  )}
-                  {(project.live || project.demo) && (
-                    <a
-                      className="project-link"
-                      href={project.live || project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
-              <div className="project-media">
-                <img src={project.image} alt={project.title} />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section capabilities-section">
-        <div className="section-header">
-          <div>
-            <p className="section-kicker">Modern Web Capabilities</p>
-            <h2 className="section-title">What I bring to the table.</h2>
-          </div>
-        </div>
-        <div className="capabilities-grid">
-          {capabilities.map((capability) => (
-            <div className="capability-card" key={capability.title}>
-              <div className="capability-header">
-                <span className="capability-icon">{capability.icon}</span>
-                <h3>{capability.title}</h3>
-              </div>
-              <ul>
-                {capability.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <ContactSection />
 
       <footer className="footer-section">
         <p>Designed &amp; built by Ramkumar Meenavalli.</p>

@@ -15,42 +15,42 @@ const About = () => {
         <div className="section-header">
           <div>
             <p className="section-kicker">About</p>
-            <h2 className="section-title">Building thoughtful, modern digital experiences.</h2>
+            <h2 className="section-title">Driven by curiosity. Built on CS fundamentals.</h2>
           </div>
           <p className="section-subtitle">
-            A quick look at my journey, values, and the way I approach product work.
+            CS grad student who shipped production-grade infrastructure at Amazon and loves building things that scale.
           </p>
         </div>
         <div className="about-grid">
           <div className="about-text">
             <p>
-              I am a results-driven software developer and IT graduate student at Arizona State
-              University, passionate about building impactful digital solutions. My experience as
-              an SDE Intern at Amazon includes designing AWS CDK constructs, automating certificate
-              rotation, and enhancing system security.
+              I'm a Information Technology graduate student at Arizona State University with a passion
+              for engineering robust, scalable systems. As an SDE Intern at Amazon, I built
+              production infrastructure — modular AWS CDK components, event-driven credential
+              rotation workflows, and automated testing pipelines that achieved 96% coverage.
             </p>
             <p>
-              I have a strong foundation in Python, Java, SQL, and TypeScript, and enjoy leveraging
-              machine learning and data visualization to solve real-world problems. I thrive in
-              collaborative environments, value creative problem-solving, and am committed to
-              continuous learning and innovation.
+              My foundation spans data structures &amp; algorithms, system design, cloud
+              engineering, and AI/ML. I actively bridge theory with hands-on projects, from RAG
+              platforms and serverless analytics apps to full-stack web applications. I care
+              deeply about code quality, clean architecture, and continuous learning.
             </p>
           </div>
           <div className="about-panels">
             <div className="about-card">
               <h3>What I value</h3>
               <ul>
-                <li>Clear communication and shared goals</li>
-                <li>Design that balances elegance and usability</li>
-                <li>Systems that are reliable and easy to maintain</li>
+                <li>CS fundamentals as a foundation for everything</li>
+                <li>Systems that are reliable, efficient, and maintainable</li>
+                <li>Continuous learning and intellectual honesty</li>
               </ul>
             </div>
             <div className="about-card">
               <h3>How I contribute</h3>
               <ul>
-                <li>Collaborative planning and discovery</li>
-                <li>Rapid prototyping and validation</li>
-                <li>Quality checks, documentation, and support</li>
+                <li>First-principles thinking on hard problems</li>
+                <li>Rapid prototyping with production-quality code</li>
+                <li>Thorough testing, documentation, and ownership</li>
               </ul>
             </div>
           </div>
