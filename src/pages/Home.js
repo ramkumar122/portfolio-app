@@ -154,6 +154,7 @@ const Home = () => {
           </h1>
           <nav className="hero-nav">
             <button className="hero-nav-link" onClick={() => scrollTo('about')}>ABOUT</button>
+            <button className="hero-nav-link" onClick={() => scrollTo('education')}>EDUCATION</button>
             <button className="hero-nav-link" onClick={() => scrollTo('experience')}>EXPERIENCE</button>
             <button className="hero-nav-link" onClick={() => scrollTo('skills')}>SKILLS</button>
             <button className="hero-nav-link" onClick={() => scrollTo('projects')}>PROJECTS</button>
@@ -207,6 +208,40 @@ const Home = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── EDUCATION ── */}
+      <section id="education" style={{ padding: '7rem 0' }}>
+        <p className="ms-section-label">E D U C A T I O N</p>
+        <div className="edu-card-wrap">
+          <div className="exp-card edu-card">
+            <div className="exp-role">Arizona State University</div>
+            <div className="exp-company">Master of Science, Information Technology</div>
+            <div className="exp-period">2024 – PRESENT · TEMPE, AZ</div>
+            <div className="edu-courses">
+              <p className="edu-courses-label">Relevant Coursework</p>
+              <div className="edu-chips">
+                {['Data Structures & Algorithms', 'Distributed Systems', 'Machine Learning', 'Database Systems', 'Cloud Computing', 'Software Engineering'].map(c => (
+                  <span className="edu-chip" key={c}>{c}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="exp-card edu-card">
+            <div className="exp-role">Anil Neerukonda Institute of Technology &amp; Sciences</div>
+            <div className="exp-company">Bachelor of Technology, Information Technology</div>
+            <div className="exp-period">2019 – 2023 · GRADE: 8.47 / 10</div>
+            <div className="edu-courses">
+              <p className="edu-courses-label">Highlights</p>
+              <div className="edu-chips">
+                {['Java (NPTEL)', 'Python (NPTEL)', 'IBM Db2 V12', 'AI & Machine Learning', 'Cloud Computing', 'Data Science'].map(c => (
+                  <span className="edu-chip" key={c}>{c}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

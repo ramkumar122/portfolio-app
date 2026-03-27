@@ -334,6 +334,48 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.65;
 }
 
+/* ─── Education ─── */
+.edu-card-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.edu-card {
+  max-width: 100%;
+}
+
+.edu-courses {
+  margin-top: 1.2rem;
+}
+
+.edu-courses-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--label);
+  margin-bottom: 0.75rem;
+}
+
+.edu-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.edu-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
 /* ─── Skills ─── */
 .skills-section {
   padding: 7rem 0;
@@ -577,6 +619,7 @@ button { font-family: inherit; cursor: pointer; }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-photo-placeholder { aspect-ratio: 16/9; }
   .exp-grid { grid-template-columns: 1fr; }
+  .edu-card-wrap { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
