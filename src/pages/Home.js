@@ -54,7 +54,7 @@ const experience = [
   },
   {
     role: 'UI/UX Coordinator',
-    company: 'Arizona State University',
+    company: 'Anil Neerukonda Institute of Technology & Sciences',
     period: 'MAY 2021 – JAN 2023',
     bullets: [
       'Coordinated UI/UX design efforts for student projects across multiple departments.',
@@ -175,13 +175,13 @@ const Home = () => {
               <p className="about-content-text">
                 Hey! I'm a Information Technology graduate student at Arizona State University with a
                 passion for building scalable, reliable systems. As an SDE Intern at Amazon, I
-                shipped production infrastructure — modular AWS CDK components, event-driven
+                shipped production infrastructure - modular AWS CDK components, event-driven
                 credential rotation workflows, and automated testing pipelines that hit 96% coverage.
               </p>
               <br />
               <p className="about-content-text">
                 My foundation spans data structures & algorithms, system design, cloud engineering
-                (AWS + Azure), and AI/ML. I love bridging theory with hands-on projects — from RAG
+                (AWS + Azure), and AI/ML. I love bridging theory with hands-on projects - from RAG
                 platforms and serverless analytics to full-stack web apps. I'm actively looking for
                 new grad SDE roles and research opportunities.
               </p>
@@ -218,7 +218,7 @@ const Home = () => {
           <div className="exp-card edu-card">
             <div className="exp-role">Arizona State University</div>
             <div className="exp-company">Master of Science, Information Technology</div>
-            <div className="exp-period">2024 – PRESENT · TEMPE, AZ</div>
+            <div className="exp-period">JAN 2024 – DEC 2025 · TEMPE, AZ</div>
             <div className="edu-courses">
               <p className="edu-courses-label">Relevant Coursework</p>
               <div className="edu-chips">
@@ -232,7 +232,7 @@ const Home = () => {
           <div className="exp-card edu-card">
             <div className="exp-role">Anil Neerukonda Institute of Technology &amp; Sciences</div>
             <div className="exp-company">Bachelor of Technology, Information Technology</div>
-            <div className="exp-period">2019 – 2023 · GRADE: 8.47 / 10</div>
+            <div className="exp-period">SEP 2019 – MAY 2023 </div>
             <div className="edu-courses">
               <p className="edu-courses-label">Highlights</p>
               <div className="edu-chips">
@@ -248,7 +248,6 @@ const Home = () => {
       {/* ── SKILLS ── */}
       <section id="skills" style={{ padding: '7rem 0' }}>
         <p className="ms-section-label">S K I L L S</p>
-        <p className="skills-subtitle">HOVER OVER A SKILL TO HIGHLIGHT</p>
         <div className="skills-grid">
           {skills.map((skill) => (
             <div className="skill-circle" key={skill}>
@@ -301,14 +300,14 @@ const Home = () => {
             I have got just what you need. <span>Lets talk.</span>
           </h2>
           <div className="contact-info">
-            <div className="contact-info-row">
+            <a className="contact-info-row" href="mailto:rammeenavalli0@gmail.com">
               <FaEnvelope />
               <span>rammeenavalli0@gmail.com</span>
-            </div>
-            <div className="contact-info-row">
+            </a>
+            <a className="contact-info-row" href="https://www.linkedin.com/in/ram-meenavalli-671173222/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
               <span>linkedin.com/in/ram-meenavalli-671173222</span>
-            </div>
+            </a>
             <div className="contact-info-row">
               <FaMapMarkerAlt />
               <span>Tempe, Arizona</span>
